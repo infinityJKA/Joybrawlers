@@ -13,12 +13,13 @@ public class Fighter : ScriptableObject
     public int jumpHeight;
     public int airJumps;
     public int airJumpHeight;
+    public int walkSpeed,walkBackSpeed;
     public Sprite smallSelectIcon;
     public Sprite bigSelectIcon;
     public GameObject model;
     public AnimatorController animator;
 
-    public string Idle,Crouching,AirIdle,
+    public Action Idle,Crouching,AirIdle,
     WalkForwards,WalkBackwards,
     Jump,AirJump,
     GroundHit,AirHit,

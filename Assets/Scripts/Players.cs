@@ -71,15 +71,19 @@ public class Players : MonoBehaviour
             }
 
             if(p1_fighterState == FighterState.Standing && p1_fighterActionState == FighterActionState.Neutral){
-                p1_animator.Play(p1_Fighter.Idle);
+                p1_Action(p1_Fighter.Idle);
             }
             else if(p1_fighterState == FighterState.Crouching && p1_fighterActionState == FighterActionState.Neutral){
-                p1_animator.Play(p1_Fighter.Crouching);
+                p1_Action(p1_Fighter.Crouching);
             }
 
         }
 
 
+    }
+
+    void p1_Action(Action action){
+        p1_animator.Play(action.modelAnimation);
     }
 
     void AddInput_P1(string input){

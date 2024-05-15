@@ -9,15 +9,16 @@ using UnityEngine.UI;
 public class Action : ScriptableObject
 {
     public string moveName;
-    public AnimationClip modelAnimation;
-    public BoxData boxData; //prefab i will spawn when attack is instantiated
+    public string modelAnimation;
+    public BoxData boxData; //prefab i will spawn when attack is instantiated 
 
 }
 
 public class ActionInput{
-    public String[] requiredInputs;
+    public List<String> requiredInputs;
     public float inputTime;
-    public State[] validStates;
+    public List<FighterState> validFighterStates;
+    public List<FighterActionState> validFighterActionStates;
     public int meter;
     public Action action;
 }
