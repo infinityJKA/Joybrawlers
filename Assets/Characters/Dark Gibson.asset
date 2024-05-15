@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f948b343e107316409ee27a8b6ecc3ef, type: 3}
+  m_Name: Dark Gibson
+  m_EditorClassIdentifier: 
+  fighterName: Dark Gibson
+  maxHP: 1000
+  jumpHeight: 0
+  airJumps: 0
+  airJumpHeight: 0
+  smallSelectIcon: {fileID: 0}
+  bigSelectIcon: {fileID: 0}
+  model: {fileID: 919132149155446097, guid: ba799696c2e42a44588d8d897870c5ed, type: 3}
