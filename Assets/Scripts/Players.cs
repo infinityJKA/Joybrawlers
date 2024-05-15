@@ -5,6 +5,8 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEditor.Animations;
+
 
 public enum BattleState{NotInBattle,Initialize,Intro,Battle,RoundFinished};
 
@@ -13,8 +15,11 @@ public class Players : MonoBehaviour
     public BattleState battleState;
     public Fighter p1_Fighter, p2_Fighter;
     public GameObject p1_Object, p2_Object,p1_Spawn,p2_Spawn;
+    public Animator p1_animator,p2_animator;
     public int p1_HP,p1_MaxHP,p2_HP,p2_MaxHP;
     public int p1_meter,p2_meter;
+    public FighterState p1_fighterState,p2_fighterState;
+    public FighterActionState p1_fighterActionState,p2_fighterActionState;
     public int matchTime;
     public bool p1_facingInvert, p2_facingInvert;
     public List<string> p1_inputs,p2_inputs;
@@ -25,11 +30,17 @@ public class Players : MonoBehaviour
 
         if(battleState == BattleState.Initialize){ /////////////////////////////////////////////
             p1_Object = p1_Fighter.model;
-            Instantiate(p1_Object,p1_Spawn.transform.position,p1_Spawn.transform.rotation);
+            p1_Object = Instantiate(p1_Object,p1_Spawn.transform.position,p1_Spawn.transform.rotation);  // THE CODE WILL SELF DESTRUCT AND INFINITELY SPAWN INCOMPLETE PLAYERS IF P1_OBJECT IS NOT DEFINIED HERE, DO NOT CHANGE!!!
+            p1_Object.AddComponent<Animator>();
+            p1_animator = p1_Object.GetComponent<Animator>();
+            p1_animator.runtimeAnimatorController = p1_Fighter.animator;
+
             p1_MaxHP = p1_Fighter.maxHP;
             p1_HP = p1_MaxHP;
             p1_meter = 0;
             p1_facingInvert = false;
+            p1_fighterState = FighterState.Standing;
+            p1_fighterActionState = FighterActionState.Neutral;
             //pretend p2 is also here
 
             //change this to intro later
@@ -47,6 +58,25 @@ public class Players : MonoBehaviour
             if(Input.GetButtonDown("p1 y")){
                 AddInput_P1("y");
             }
+
+            if(p1_fighterActionState == FighterActionState.Neutral){
+                if(p1_inputs.Count > 0){
+                    if(p1_inputs[p1_inputs.Count-1] == "2" || p1_inputs[p1_inputs.Count-1] == "1" || p1_inputs[p1_inputs.Count-1] == "3"){
+                        p1_fighterState = FighterState.Crouching;
+                    }
+                    else if(p1_inputs[p1_inputs.Count-1] == "4" || p1_inputs[p1_inputs.Count-1] == "5" || p1_inputs[p1_inputs.Count-1] == "6"){
+                        p1_fighterState = FighterState.Standing;
+                    }
+                }
+            }
+
+            if(p1_fighterState == FighterState.Standing && p1_fighterActionState == FighterActionState.Neutral){
+                p1_animator.Play(p1_Fighter.Idle);
+            }
+            else if(p1_fighterState == FighterState.Crouching && p1_fighterActionState == FighterActionState.Neutral){
+                p1_animator.Play(p1_Fighter.Crouching);
+            }
+
         }
 
 
@@ -59,7 +89,7 @@ public class Players : MonoBehaviour
     }
 
     void RemoveInputs_P1(){
-        for(int i = 0; i < p1_inputTime.Count; i++){
+        for(int i = 0; i < p1_inputTime.Count-1; i++){
             if(Time.time - p1_inputTime[i] > inputValidTime){
                 p1_inputs.RemoveAt(i);
                 p1_inputTime.RemoveAt(i);

@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 8.65, z: 32.11}
+  m_LocalPosition: {x: 0, y: 9.64, z: 32.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -225,6 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1036419381}
   - component: {fileID: 1036419380}
+  - component: {fileID: 1036419382}
   m_Layer: 0
   m_Name: Players
   m_TagString: Untagged
@@ -251,12 +252,18 @@ MonoBehaviour:
   p2_Object: {fileID: 0}
   p1_Spawn: {fileID: 1456250676}
   p2_Spawn: {fileID: 0}
+  p1_animator: {fileID: 0}
+  p2_animator: {fileID: 0}
   p1_HP: 0
   p1_MaxHP: 0
   p2_HP: 0
   p2_MaxHP: 0
   p1_meter: 0
   p2_meter: 0
+  p1_fighterState: 0
+  p2_fighterState: 0
+  p1_fighterActionState: 0
+  p2_fighterActionState: 0
   matchTime: 0
   p1_facingInvert: 0
   p2_facingInvert: 0
@@ -273,13 +280,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036419379}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.385084, y: 11.636849, z: -4.531943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1036419382
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036419379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1456250676
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,9 +318,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1456250677}
   m_Layer: 0
-  m_Name: p1Location
+  m_Name: p1Spawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

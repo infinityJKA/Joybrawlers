@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.Animations;
+
 
 [CreateAssetMenu(fileName = "Fighter", menuName = "JOYOUS ASSETS/Fighter")]
 public class Fighter : ScriptableObject
@@ -14,5 +16,15 @@ public class Fighter : ScriptableObject
     public Sprite smallSelectIcon;
     public Sprite bigSelectIcon;
     public GameObject model;
+    public AnimatorController animator;
+
+    public string Idle,Crouching,AirIdle,
+    WalkForwards,WalkBackwards,
+    Jump,AirJump,
+    GroundHit,AirHit,
+    KnockedDown,LaunchUp,LaunchDown,
+    GroundShield,CrouchShield,AirShield,
+    Victory,Lose;
 
 }
+
