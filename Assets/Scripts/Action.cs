@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Action : ScriptableObject
 {
     public string moveName;
-    public string modelAnimation;
+    //public string modelAnimation;
     public BoxData boxData; //prefab i will spawn when attack is instantiated 
 
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b6366358384034f8d5cb13a3560fcb, type: 3}
-  m_Name: Idle
+  m_Name: Crouch
   m_EditorClassIdentifier: 
-  moveName: Idle
-  boxData: {fileID: 8717953695701139612, guid: 300f7c0502a69b64c972ef031a270887, type: 3}
+  moveName: Crouching
+  boxData: {fileID: 8810492175160510393, guid: 85a2d614cc5f0924593feac676b9888b, type: 3}

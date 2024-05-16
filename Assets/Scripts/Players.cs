@@ -12,6 +12,7 @@ public enum BattleState{NotInBattle,Initialize,Intro,Battle,RoundFinished};
 
 public class Players : MonoBehaviour
 {
+    public bool showFrameData;
     public BattleState battleState;
     public Fighter p1_Fighter, p2_Fighter;
     public GameObject p1_Object, p2_Object,p1_Spawn,p2_Spawn;
@@ -25,6 +26,7 @@ public class Players : MonoBehaviour
     public List<string> p1_inputs,p2_inputs;
     public List<double> p1_inputTime,p2_inputTime;
     public double inputValidTime;
+    public TimelineHandler timelineHandlerPrefab,p1_actionTimeline,p2_actionTimeline;
 
     void Update(){
 
@@ -34,6 +36,11 @@ public class Players : MonoBehaviour
             p1_Object.AddComponent<Animator>();
             p1_animator = p1_Object.GetComponent<Animator>();
             p1_animator.runtimeAnimatorController = p1_Fighter.animator;
+
+            // GameObject p1_actionTimeline = new GameObject();
+            // temp1.AddComponent<Rigidbody>(); 
+            p1_actionTimeline = Instantiate(timelineHandlerPrefab,p1_Object.transform.position,p1_Object.transform.rotation);  // THE CODE WILL SELF DESTRUCT AND INFINITELY SPAWN INCOMPLETE PLAYERS IF P1_OBJECT IS NOT DEFINIED HERE, DO NOT CHANGE!!!
+            p1_actionTimeline.transform.parent = p1_Object.transform;
 
             p1_MaxHP = p1_Fighter.maxHP;
             p1_HP = p1_MaxHP;
@@ -71,10 +78,10 @@ public class Players : MonoBehaviour
             }
 
             if(p1_fighterState == FighterState.Standing && p1_fighterActionState == FighterActionState.Neutral){
-                p1_Action(p1_Fighter.Idle);
+                p1_Action(p1_Fighter.Idle, true);
             }
             else if(p1_fighterState == FighterState.Crouching && p1_fighterActionState == FighterActionState.Neutral){
-                p1_Action(p1_Fighter.Crouching);
+                p1_Action(p1_Fighter.Crouching, true);
             }
 
         }
@@ -82,8 +89,26 @@ public class Players : MonoBehaviour
 
     }
 
-    void p1_Action(Action action){
-        p1_animator.Play(action.modelAnimation);
+    void p1_Action(Action action, bool continous){
+        if(continous){
+            //Debug.Log(p1_actionTimeline.currentActionName + " vs " + action.name);
+            if(p1_actionTimeline.currentActionName == action.name){
+                return;
+            }
+        }
+
+        // destroys current animation timeline
+        if(p1_actionTimeline.transform.childCount > 0){
+            Destroy(p1_actionTimeline.transform.GetChild(0).gameObject);
+            Debug.Log("destroy!");
+        }
+
+        BoxData boxData = Instantiate(action.boxData,p1_actionTimeline.transform.position,p1_actionTimeline.transform.rotation);
+        boxData.transform.parent = p1_actionTimeline.transform;
+        boxData.PlayerNumber = 1;
+        p1_actionTimeline.currentActionName = action.name;
+
+        boxData.StartAnim(p1_Object);
     }
 
     void AddInput_P1(string input){
