@@ -5,7 +5,6 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
-using UnityEditor.Animations;
 
 
 public enum BattleState{NotInBattle,Initialize,Intro,Battle,RoundFinished};

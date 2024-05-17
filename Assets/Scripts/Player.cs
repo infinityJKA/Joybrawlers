@@ -5,9 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
-using UnityEditor.Animations;
 using UnityEngine.Playables;
-using UnityEditor;
 
 
 public class Player : MonoBehaviour
@@ -25,6 +23,7 @@ public class Player : MonoBehaviour
     public TimelineHandler timelineHandlerPrefab,actionTimeline;
     public int playerNumber; //"p1" or "p2"
     public Players playersManager;
+    public double xVel,yVel;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -40,22 +39,24 @@ public class Player : MonoBehaviour
             CheckDirectionDown();
             CheckDirectionRelease();
             
-            if(Input.GetButtonDown("p" + playerNumber + " x")){
-                AddInput("x");
-                // acted = CheckForInput();
-            }
-            else if(Input.GetButtonDown("p" + playerNumber + " y")){
-                AddInput("y");
-                // acted = CheckForInput();
+            if(fighterActionState != FighterActionState.Attacking || fighterActionState != FighterActionState.Attacking){
+                if(Input.GetButtonDown("p" + playerNumber + " x")){
+                    AddInput("x");
+                    // acted = CheckForInput();
+                }
+                else if(Input.GetButtonDown("p" + playerNumber + " y")){
+                    AddInput("y");
+                    // acted = CheckForInput();
+                }
             }
 
             if(fighterActionState == FighterActionState.Attacking){
                 if(fighterObject.GetComponentInChildren<PlayableDirector>().state != PlayState.Playing){
-                    //Destroy(actionTimeline.transform.GetChild(0).gameObject);
                     fighterActionState = FighterActionState.Neutral;
                 }
             }
 
+            // COMMAND INPUT CHECKING SYSTEM
             for(int i = 0; i < fighter.inputActions.Count; i++){
                 ActionInput inputAction = fighter.inputActions[i];
                 if(!acted){
@@ -73,12 +74,16 @@ public class Player : MonoBehaviour
                                 if(validInput){
                                     Action(inputAction.action,true);
                                     acted = true;
+                                    inputs.Clear();
+                                    inputTime.Clear();
+
                                 }
                             }
                         }
                     }
                 }
             }
+
             
             if(fighterActionState == FighterActionState.Neutral){
                 if(inputs.Count > 0){
@@ -159,10 +164,12 @@ public class Player : MonoBehaviour
     }
 
     void RemoveInputs(){
-        for(int i = 0; i < inputTime.Count-1; i++){
-            if(Time.time - inputTime[i] > playersManager.inputValidTime){
-                inputs.RemoveAt(i);
-                inputTime.RemoveAt(i);
+        if(inputs.Count > 0){
+            for(int i = 0; i < inputTime.Count-1; i++){
+                if(Time.time - inputTime[i] > playersManager.inputValidTime){
+                    inputs.RemoveAt(i);
+                    inputTime.RemoveAt(i);
+                }
             }
         }
     }
