@@ -40,3 +40,10 @@ MonoBehaviour:
   AirShield: {fileID: 0}
   Victory: {fileID: 0}
   Lose: {fileID: 0}
+  inputActions:
+  - action: {fileID: 11400000, guid: d9980b6325cd23442882856a384570de, type: 2}
+    requiredInputs:
+    - x
+    validFighterStates: 00000000
+    validFighterActionStates: 00000000
+    meter: 0

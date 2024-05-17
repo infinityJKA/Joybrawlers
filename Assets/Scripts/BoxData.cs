@@ -21,7 +21,7 @@ public class BoxData : MonoBehaviour
 
 
         frameData.Play();
-        Debug.Log("Play!");
+        // Debug.Log("Play!");
     }
     
 }

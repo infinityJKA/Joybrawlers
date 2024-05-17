@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    public int damage;
+    public float xknockback,yknockback;
+    public bool cancellableOnHit;
     void Start(){
         if(GameObject.Find("Players").GetComponent<Players>().showFrameData == false){
             transform.GetComponent<MeshRenderer>().enabled = false;
@@ -12,3 +15,5 @@ public class Box : MonoBehaviour
 
     }
 }
+
+public enum BoxType{hitbox,hurtbox}
