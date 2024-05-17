@@ -354,3 +354,4 @@ MonoBehaviour:
   frameData: {fileID: 8063011751534200202}
   modelAnim: {fileID: 5337815752489611872, guid: ba799696c2e42a44588d8d897870c5ed, type: 3}
   PlayerNumber: 0
+  MaximumTracks: 4
