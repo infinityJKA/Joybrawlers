@@ -46,4 +46,4 @@ MonoBehaviour:
     validFighterState: 0
     validActionState: 0
     meter: 0
-    action: {fileID: 0}
+    action: {fileID: 11400000, guid: d9980b6325cd23442882856a384570de, type: 2}
