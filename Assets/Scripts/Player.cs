@@ -56,6 +56,30 @@ public class Player : MonoBehaviour
                 }
             }
 
+            for(int i = 0; i < fighter.inputActions.Count; i++){
+                ActionInput inputAction = fighter.inputActions[i];
+                if(!acted){
+                    if(fighterState == inputAction.validFighterState && fighterActionState == inputAction.validActionState){ // instantly skip if invalid state
+                        if(inputAction.meter <= meter ){ // instantly skip check if not enough meter
+                            if(inputAction.requiredInputs.Count <= inputs.Count){  /// instantly skip check if physically not enough inputs
+                                bool validInput = true;
+                                for(int j = 0; j < inputAction.requiredInputs.Count; j++){  /// loop through each required input
+                                    string a = inputAction.requiredInputs[j]; // input required
+                                    string b =inputs[inputs.Count-inputAction.requiredInputs.Count+j]; // input given
+                                    if(a != b){
+                                        validInput = false;
+                                    }
+                                }
+                                if(validInput){
+                                    Action(inputAction.action,true);
+                                    acted = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             if(fighterActionState == FighterActionState.Neutral){
                 if(inputs.Count > 0){
                     if(inputs[inputs.Count-1] == "2" || inputs[inputs.Count-1] == "1" || inputs[inputs.Count-1] == "3"){
@@ -66,33 +90,6 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-
-            for(int i = 0; i < fighter.inputActions.Count; i++){
-                ActionInput inputAction = fighter.inputActions[i];
-                if(!acted){
-                    if(fighterState == inputAction.validFighterState){ // instantly skip if invalid state
-                        if(fighterActionState == inputAction.validActionState){ 
-                            if(inputAction.meter <= meter ){ // instantly skip check if not enough meter
-                                if(inputAction.requiredInputs.Count <= inputs.Count){  /// instantly skip check if physically not enough inputs
-                                    bool validInput = true;
-                                    for(int j = 0; j < inputAction.requiredInputs.Count; j++){  /// loop through each required input
-                                        string a = inputAction.requiredInputs[j]; // input required
-                                        string b =inputs[inputs.Count-inputAction.requiredInputs.Count+j]; // input given
-                                        if(a != b){
-                                            validInput = false;
-                                        }
-                                    }
-                                    if(validInput){
-                                        Action(inputAction.action,true);
-                                        acted = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
 
             if(!acted){
                 if(fighterState == FighterState.Standing && fighterActionState == FighterActionState.Neutral){
