@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEditor.Animations;
+using UnityEngine.Playables;
+using UnityEditor;
 
 
 public class Player : MonoBehaviour
@@ -20,9 +22,8 @@ public class Player : MonoBehaviour
     public bool facingInvert;
     public List<string> inputs;
     public List<double> inputTime;
-    public double inputValidTime;
     public TimelineHandler timelineHandlerPrefab,actionTimeline;
-    public string playerNumber; //"p1" or "p2"
+    public int playerNumber; //"p1" or "p2"
     public Players playersManager;
 
     void Start(){
@@ -33,15 +34,26 @@ public class Player : MonoBehaviour
 
         if(playersManager.battleState == BattleState.Battle){
 
+            bool acted = false;
+
             RemoveInputs();
             CheckDirectionDown();
             CheckDirectionRelease();
             
-            if(Input.GetButtonDown(playerNumber + " x")){
+            if(Input.GetButtonDown("p" + playerNumber + " x")){
                 AddInput("x");
+                // acted = CheckForInput();
             }
-            if(Input.GetButtonDown(playerNumber + " y")){
+            else if(Input.GetButtonDown("p" + playerNumber + " y")){
                 AddInput("y");
+                // acted = CheckForInput();
+            }
+
+            if(fighterActionState == FighterActionState.Attacking){
+                if(fighterObject.GetComponentInChildren<PlayableDirector>().state != PlayState.Playing){
+                    //Destroy(actionTimeline.transform.GetChild(0).gameObject);
+                    fighterActionState = FighterActionState.Neutral;
+                }
             }
 
             if(fighterActionState == FighterActionState.Neutral){
@@ -55,11 +67,40 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if(fighterState == FighterState.Standing && fighterActionState == FighterActionState.Neutral){
-                Action(fighter.Idle, true);
+            for(int i = 0; i < fighter.inputActions.Count; i++){
+                ActionInput inputAction = fighter.inputActions[i];
+                if(!acted){
+                    if(fighterState == inputAction.validFighterState){ // instantly skip if invalid state
+                        if(fighterActionState == inputAction.validActionState){ 
+                            if(inputAction.meter <= meter ){ // instantly skip check if not enough meter
+                                if(inputAction.requiredInputs.Count <= inputs.Count){  /// instantly skip check if physically not enough inputs
+                                    bool validInput = true;
+                                    for(int j = 0; j < inputAction.requiredInputs.Count; j++){  /// loop through each required input
+                                        string a = inputAction.requiredInputs[j]; // input required
+                                        string b =inputs[inputs.Count-inputAction.requiredInputs.Count+j]; // input given
+                                        if(a != b){
+                                            validInput = false;
+                                        }
+                                    }
+                                    if(validInput){
+                                        Action(inputAction.action,true);
+                                        acted = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            else if(fighterState == FighterState.Crouching && fighterActionState == FighterActionState.Neutral){
-                Action(fighter.Crouching, true);
+
+
+            if(!acted){
+                if(fighterState == FighterState.Standing && fighterActionState == FighterActionState.Neutral){
+                    Action(fighter.Idle, true);
+                }
+                else if(fighterState == FighterState.Crouching && fighterActionState == FighterActionState.Neutral){
+                    Action(fighter.Crouching, true);
+                }
             }
 
         }
@@ -68,26 +109,33 @@ public class Player : MonoBehaviour
     }
 
     void Action(Action action, bool continous){
-        if(continous){
-            //Debug.Log(actionTimeline.currentActionName + " vs " + action.name);
-            if(actionTimeline.currentActionName == action.name){
-                return;
-            }
+        if(actionTimeline.currentActionName == action.name){  // stop if the action is already in action
+            return;
         }
 
-        // destroys current animation timeline
+        // set action state
+        fighterActionState = action.actionStateDuringAction;
+
+        // // erases inputs
+        // if(fighterActionState != FighterActionState.Neutral){
+        //     inputs.Clear();
+        //     inputTime.Clear();
+        // }
+        
+        // destroys preexisting animation timeline
         if(actionTimeline.transform.childCount > 0){
             Destroy(actionTimeline.transform.GetChild(0).gameObject);
-            Debug.Log("destroy!");
         }
 
         BoxData boxData = Instantiate(action.boxData,actionTimeline.transform.position,actionTimeline.transform.rotation);
         boxData.transform.parent = actionTimeline.transform;
-        boxData.PlayerNumber = 1;
+        boxData.PlayerNumber = playerNumber;
         actionTimeline.currentActionName = action.name;
 
         boxData.StartAnim(fighterObject);
     }
+
+    
 
     public void InitializeBattleStart(Vector3 pos, Quaternion rot){
         fighterObject = fighter.model;
@@ -110,12 +158,12 @@ public class Player : MonoBehaviour
     void AddInput(string input){
         inputs.Add(input);
         inputTime.Add(Time.time);
-        Debug.Log(input);
+        // Debug.Log(input);
     }
 
     void RemoveInputs(){
         for(int i = 0; i < inputTime.Count-1; i++){
-            if(Time.time - inputTime[i] > inputValidTime){
+            if(Time.time - inputTime[i] > playersManager.inputValidTime){
                 inputs.RemoveAt(i);
                 inputTime.RemoveAt(i);
             }
@@ -123,24 +171,24 @@ public class Player : MonoBehaviour
     }
 
     void CheckDirectionDown(){
-        if(Input.GetButtonDown(playerNumber + " down")){
-            if(Input.GetButton(playerNumber + " left")){
+        if(Input.GetButtonDown("p" + playerNumber + " down")){
+            if(Input.GetButton("p" + playerNumber + " left")){
                 if(facingInvert == false){AddInput("1");}
                 else{AddInput("3");}
             }
-            else if(Input.GetButton(playerNumber + " right")){
+            else if(Input.GetButton("p" + playerNumber + " right")){
                 if(facingInvert == false){AddInput("3");}
                 else{AddInput("1");}
             }
             else{AddInput("2");}
         }
 
-        else if(Input.GetButtonDown(playerNumber + " left")){
-            if(Input.GetButton(playerNumber + " down")){
+        else if(Input.GetButtonDown("p" + playerNumber + " left")){
+            if(Input.GetButton("p" + playerNumber + " down")){
                 if(facingInvert == false){AddInput("1");}
                 else{AddInput("3");}
             }
-            else if(Input.GetButton(playerNumber + " up")){
+            else if(Input.GetButton("p" + playerNumber + " up")){
                 if(facingInvert == false){AddInput("7");}
                 else{AddInput("9");}
             }
@@ -150,12 +198,12 @@ public class Player : MonoBehaviour
             }
         }
 
-        else if(Input.GetButtonDown(playerNumber + " right")){
-            if(Input.GetButton(playerNumber + " down")){
+        else if(Input.GetButtonDown("p" + playerNumber + " right")){
+            if(Input.GetButton("p" + playerNumber + " down")){
                 if(facingInvert == false){AddInput("3");}
                 else{AddInput("1");}
             }
-            else if(Input.GetButton(playerNumber + " up")){
+            else if(Input.GetButton("p" + playerNumber + " up")){
                 if(facingInvert == false){AddInput("9");}
                 else{AddInput("7");}
             }
@@ -165,12 +213,12 @@ public class Player : MonoBehaviour
             }
         }
 
-        else if(Input.GetButtonDown(playerNumber + " up")){
-            if(Input.GetButton(playerNumber + " left")){
+        else if(Input.GetButtonDown("p" + playerNumber + " up")){
+            if(Input.GetButton("p" + playerNumber + " left")){
                 if(facingInvert == false){AddInput("7");}
                 else{AddInput("9");}
             }
-            else if(Input.GetButton(playerNumber + " right")){
+            else if(Input.GetButton("p" + playerNumber + " right")){
                 if(facingInvert == false){AddInput("9");}
                 else{AddInput("7");}
             }
@@ -179,45 +227,45 @@ public class Player : MonoBehaviour
     }
 
     void CheckDirectionRelease(){
-        if(Input.GetButtonUp(playerNumber + " down")){
-            if(Input.GetButton(playerNumber + " left")){
+        if(Input.GetButtonUp("p" + playerNumber + " down")){
+            if(Input.GetButton("p" + playerNumber + " left")){
                 if(facingInvert == false){AddInput("4");}
                 else{AddInput("6");}
             }
-            else if(Input.GetButton(playerNumber + " right")){
+            else if(Input.GetButton("p" + playerNumber + " right")){
                 if(facingInvert == false){AddInput("6");}
                 else{AddInput("4");}
             }
             else{AddInput("5");}
         }
 
-        else if(Input.GetButtonUp(playerNumber + " left")){
-            if(Input.GetButton(playerNumber + " down")){
+        else if(Input.GetButtonUp("p" + playerNumber + " left")){
+            if(Input.GetButton("p" + playerNumber + " down")){
                 AddInput("2");
             }
-            else if(Input.GetButton(playerNumber + " up")){
+            else if(Input.GetButton("p" + playerNumber + " up")){
                 AddInput("8");
             }
             else{AddInput("5");}
         }
 
-        else if(Input.GetButtonUp(playerNumber + " up")){
-            if(Input.GetButton(playerNumber + " left")){
+        else if(Input.GetButtonUp("p" + playerNumber + " up")){
+            if(Input.GetButton("p" + playerNumber + " left")){
                 if(facingInvert == false){AddInput("4");}
                 else{AddInput("6");}
             }
-            else if(Input.GetButton(playerNumber + " right")){
+            else if(Input.GetButton("p" + playerNumber + " right")){
                 if(facingInvert == false){AddInput("6");}
                 else{AddInput("4");}
             }
             else{AddInput("5");}
         }
 
-        else if(Input.GetButtonUp(playerNumber + " right")){
-            if(Input.GetButton(playerNumber + " down")){
+        else if(Input.GetButtonUp("p" + playerNumber + " right")){
+            if(Input.GetButton("p" + playerNumber + " down")){
                 AddInput("2");
             }
-            else if(Input.GetButton(playerNumber + " up")){
+            else if(Input.GetButton("p" + playerNumber + " up")){
                 AddInput("8");
             }
             else{AddInput("5");}

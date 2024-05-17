@@ -178,10 +178,9 @@ MonoBehaviour:
   facingInvert: 0
   inputs: []
   inputTime: []
-  inputValidTime: 0
   timelineHandlerPrefab: {fileID: 0}
   actionTimeline: {fileID: 0}
-  playerNumber: 
+  playerNumber: 0
   playersManager: {fileID: 0}
 --- !u!1001 &525098528
 PrefabInstance:
@@ -484,10 +483,9 @@ MonoBehaviour:
   facingInvert: 0
   inputs: []
   inputTime: []
-  inputValidTime: 0
   timelineHandlerPrefab: {fileID: 1042536346}
   actionTimeline: {fileID: 0}
-  playerNumber: p1
+  playerNumber: 1
   playersManager: {fileID: 0}
 --- !u!1001 &1377184550
 PrefabInstance:

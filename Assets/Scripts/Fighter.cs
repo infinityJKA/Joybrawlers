@@ -27,5 +27,7 @@ public class Fighter : ScriptableObject
     GroundShield,CrouchShield,AirShield,
     Victory,Lose;
 
+    public List<ActionInput> inputActions;
+
 }
 

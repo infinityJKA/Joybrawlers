@@ -11,14 +11,16 @@ public class Action : ScriptableObject
     public string moveName;
     //public string modelAnimation;
     public BoxData boxData; //prefab i will spawn when attack is instantiated 
+    
+    public FighterActionState actionStateDuringAction = FighterActionState.Attacking;
 
 }
 
+[System.Serializable]
 public class ActionInput{
-    public List<String> requiredInputs;
-    public float inputTime;
-    public List<FighterState> validFighterStates;
-    public List<FighterActionState> validFighterActionStates;
+    public List<string> requiredInputs;
+    public FighterState validFighterState;
+    public FighterActionState validActionState;
     public int meter;
     public Action action;
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveName: Crouching
   boxData: {fileID: 8810492175160510393, guid: 85a2d614cc5f0924593feac676b9888b, type: 3}
+  actionStateDuringAction: 0
