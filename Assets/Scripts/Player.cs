@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     public TimelineHandler timelineHandlerPrefab,actionTimeline;
     public int playerNumber; //"p1" or "p2"
     public Players playersManager;
-    public double xVel,yVel;
+    public float xVel,yVel;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
 
             bool acted = false;
 
+            if(inputTime.Count == 1){
+                inputTime[0] = Time.time;
+            }
+
             RemoveInputs();
             CheckDirectionDown();
             CheckDirectionRelease();
@@ -42,11 +46,9 @@ public class Player : MonoBehaviour
             if(fighterActionState != FighterActionState.Attacking || fighterActionState != FighterActionState.Attacking){
                 if(Input.GetButtonDown("p" + playerNumber + " x")){
                     AddInput("x");
-                    // acted = CheckForInput();
                 }
                 else if(Input.GetButtonDown("p" + playerNumber + " y")){
                     AddInput("y");
-                    // acted = CheckForInput();
                 }
             }
 
@@ -74,8 +76,7 @@ public class Player : MonoBehaviour
                                 if(validInput){
                                     Action(inputAction.action,true);
                                     acted = true;
-                                    inputs.Clear();
-                                    inputTime.Clear();
+                                    ResetInputLists();
 
                                 }
                             }
@@ -97,13 +98,44 @@ public class Player : MonoBehaviour
             }
 
             if(!acted){
-                if(fighterState == FighterState.Standing && fighterActionState == FighterActionState.Neutral){
-                    Action(fighter.Idle, true);
-                }
-                else if(fighterState == FighterState.Crouching && fighterActionState == FighterActionState.Neutral){
-                    Action(fighter.Crouching, true);
+                if(fighterActionState == FighterActionState.Neutral){
+                    if(fighterState == FighterState.Standing){
+                        if(inputs.Count > 0){
+                            if(inputs[inputs.Count-1] == "6"){         //  WALKING
+                                Action(fighter.WalkForwards, true);
+                                if(xVel < fighter.walkSpeed){
+                                    xVel = fighter.walkSpeed;
+                                }
+                            }
+                            else if(inputs[inputs.Count-1] == "4"){    // WALKING BACKWARDS
+                                Action(fighter.WalkBackwards, true);
+                                if(xVel > fighter.walkBackSpeed){
+                                    xVel = fighter.walkBackSpeed;
+                                }
+                            }
+                            else{
+                                Action(fighter.Idle, true);           //  IDLE
+                                if(inputs.Count >= 2){
+                                    if(inputs[inputs.Count-2] == "4" || inputs[inputs.Count-2] == "6"){
+                                        xVel = 0;
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            Action(fighter.Idle, true);   //  ALT IDLE CONDITION
+                        }
+                    }
+                    else if(fighterState == FighterState.Crouching){
+                        Action(fighter.Crouching, true);
+                    }
                 }
             }
+
+            fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,fighterObject.transform.position[1]+yVel,0);
+            xVel = xVel*0.7f;
+            yVel = yVel*0.7f; 
+
 
         }
 
@@ -137,7 +169,10 @@ public class Player : MonoBehaviour
         boxData.StartAnim(fighterObject);
     }
 
-    
+    public void ResetInputLists(){
+        inputs.Clear();
+        inputTime.Clear();
+    }
 
     public void InitializeBattleStart(Vector3 pos, Quaternion rot){
         fighterObject = fighter.model;
@@ -250,6 +285,10 @@ public class Player : MonoBehaviour
             else if(Input.GetButton("p" + playerNumber + " up")){
                 AddInput("8");
             }
+            else if(Input.GetButton("p" + playerNumber + " right")){
+                if(facingInvert == false){AddInput("6");}
+                else{AddInput("4");}
+            }
             else{AddInput("5");}
         }
 
@@ -271,6 +310,10 @@ public class Player : MonoBehaviour
             }
             else if(Input.GetButton("p" + playerNumber + " up")){
                 AddInput("8");
+            }
+            else if(Input.GetButton("p" + playerNumber + " left")){
+                if(facingInvert == false){AddInput("4");}
+                else{AddInput("6");}
             }
             else{AddInput("5");}
         }

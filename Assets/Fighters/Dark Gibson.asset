@@ -17,8 +17,8 @@ MonoBehaviour:
   jumpHeight: 0
   airJumps: 0
   airJumpHeight: 0
-  walkSpeed: 0
-  walkBackSpeed: 0
+  walkSpeed: 0.03
+  walkBackSpeed: -0.02
   smallSelectIcon: {fileID: 0}
   bigSelectIcon: {fileID: 0}
   model: {fileID: 919132149155446097, guid: ba799696c2e42a44588d8d897870c5ed, type: 3}
@@ -26,8 +26,8 @@ MonoBehaviour:
   Idle: {fileID: 11400000, guid: 590a431f957c0d848986d5bcaf6a65e3, type: 2}
   Crouching: {fileID: 11400000, guid: 1841073ff0139e34bb37350a39b48217, type: 2}
   AirIdle: {fileID: 0}
-  WalkForwards: {fileID: 0}
-  WalkBackwards: {fileID: 0}
+  WalkForwards: {fileID: 11400000, guid: 8a0f3321bfbfb4845abf0e7b5e880720, type: 2}
+  WalkBackwards: {fileID: 11400000, guid: d30518cc07d72bc41befa293a61ceee3, type: 2}
   Jump: {fileID: 0}
   AirJump: {fileID: 0}
   GroundHit: {fileID: 0}

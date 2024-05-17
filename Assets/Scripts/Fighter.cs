@@ -11,7 +11,7 @@ public class Fighter : ScriptableObject
     public int jumpHeight;
     public int airJumps;
     public int airJumpHeight;
-    public int walkSpeed,walkBackSpeed;
+    public float walkSpeed,walkBackSpeed;
     public Sprite smallSelectIcon;
     public Sprite bigSelectIcon;
     public GameObject model;

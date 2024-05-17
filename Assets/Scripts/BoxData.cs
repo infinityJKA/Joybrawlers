@@ -13,7 +13,7 @@ public class BoxData : MonoBehaviour
     public PlayableDirector frameData;
     public AnimationClip modelAnim;
     public int PlayerNumber; // either 1 for p1 or 2 for p2
-    public int MaximumTracks;
+    // public int MaximumTracks;
 
     public void StartAnim(GameObject model){ // adds the relevant model to the timeline and the animation to play
         TimelineAsset asset = frameData.playableAsset as TimelineAsset;
