@@ -146,8 +146,8 @@ public class Player : MonoBehaviour
                 fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,fighterObject.transform.position[1]+yVel,0);
             }
             // xVel -= 0.001f;
-            xVel = xVel*0.985f;
-            yVel = yVel*0.985f; 
+            xVel = xVel*0.915f;
+            yVel = yVel*0.915f; 
     }
 
     void Action(Action action, bool continous){

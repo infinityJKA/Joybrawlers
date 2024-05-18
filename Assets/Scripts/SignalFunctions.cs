@@ -15,7 +15,13 @@ public class SignalFunctions : MonoBehaviour
         }
     }
 
-    public void yVelocityAdd(float x){
-
+    public void yVelocityAdd(float y){
+        Debug.Log("yVelAdd");
+        if(GetComponent<BoxData>().PlayerNumber == 1){
+            GameObject.Find("P1").GetComponent<Player>().yVel += y;
+        }
+        else if(GetComponent<BoxData>().PlayerNumber == 2){
+            GameObject.Find("P2").GetComponent<Player>().yVel += y;
+        }
     }
 }
