@@ -50,10 +50,12 @@ public class Player : MonoBehaviour
 
         if(fighterActionState == FighterActionState.Neutral){
             if(facingInvert){
-                fighterObject.transform.rotation = Quaternion.Euler(0,0,0);
+                // fighterObject.transform.rotation = Quaternion.Euler(0,0,0);
+                fighterObject.transform.localScale = new Vector3(-1,1,1);
             }
             else{
-                fighterObject.transform.rotation = Quaternion.Euler(0,180,0);
+                // fighterObject.transform.rotation = Quaternion.Euler(0,180,0);
+                fighterObject.transform.localScale = new Vector3(1,1,1);
             }
         }
 
@@ -212,6 +214,9 @@ public class Player : MonoBehaviour
         }
 
         BoxData boxData = Instantiate(action.boxData,actionTimeline.transform.position,actionTimeline.transform.rotation);
+        if(facingInvert){
+            boxData.transform.Rotate(0,180,0);
+        }
         //boxData.modelAnim.
 
         boxData.transform.parent = actionTimeline.transform;
