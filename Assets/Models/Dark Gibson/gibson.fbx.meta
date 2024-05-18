@@ -39,12 +39,80 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Armature|1y' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'head' has translation animation that will
+      be discarded.\n\t'lowerarm.L' has translation animation that will be discarded.\n\t'lowerarm.R'
+      has translation animation that will be discarded.\n\t'hand.R' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Armature|236x' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.R'
+      has translation animation that will be discarded.\n\t'upperarm.R' has scale
+      animation that will be discarded.\n\t'hand.R' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'hand.R' has scale animation
+      that will be discarded.\n\nClip 'Armature|236y' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'lowerarm.R' has translation animation that
+      will be discarded.\n\t'upperarm.R' has scale animation that will be discarded.\n\t'hand.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'hand.R'
+      has scale animation that will be discarded.\n\nClip 'Armature|2x' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
+      animation that will be discarded.\n\nClip 'Armature|5x' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
+      animation that will be discarded.\n\t'hand.L' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'lowerarm.R' has translation
+      animation that will be discarded.\n\nClip 'Armature|5y' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
+      animation that will be discarded.\n\t'lowerarm.R' has translation animation
+      that will be discarded.\n\t'hand.R' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n\nClip 'Armature|air x' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'thigh.L' has translation
+      animation that will be discarded.\n\nClip 'Armature|crouch' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'lowerarm.R' has translation
+      animation that will be discarded.\n\nClip 'Armature|crouch to stand' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
+      animation that will be discarded.\n\t'lowerarm.R' has translation animation
+      that will be discarded.\n\nClip 'Armature|idle' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'lowerarm.L' has translation animation that
+      will be discarded.\n\t'lowerarm.R' has translation animation that will be discarded.\n\nClip
+      'Armature|stand to crouch' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.L'
+      has translation animation that will be discarded.\n\t'lowerarm.R' has translation
+      animation that will be discarded.\n\nClip 'Armature|Taunt' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
+      animation that will be discarded.\n\t'hand.L' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'lowerarm.R' has translation
+      animation that will be discarded.\n\t'hand.R' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'Armature|Victory'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.R'
+      has translation animation that will be discarded.\n\t'hand.R' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Armature|Walk' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.L'
+      has translation animation that will be discarded.\n\t'hand.L' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'lowerarm.R'
+      has translation animation that will be discarded.\n\t'hand.R' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Armature|Walk Backwards' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.L'
+      has translation animation that will be discarded.\n\t'hand.L' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'lowerarm.R'
+      has translation animation that will be discarded.\n\t'hand.R' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -856,7 +924,202 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: gibson(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HeadModel
+      parentName: gibson(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0.000000057601163, z: 0.000000057601163, w: 0.7071068}
+      scale: {x: 100, y: 100, z: 100}
+    - name: BodyModel
+      parentName: gibson(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0.000000057601163, z: 0.000000057601163, w: 0.7071068}
+      scale: {x: 100, y: 100, z: 100}
+    - name: ArmsModel
+      parentName: gibson(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0.000000057601163, z: 0.000000057601163, w: 0.7071068}
+      scale: {x: 100, y: 100, z: 100}
+    - name: LegsModel
+      parentName: gibson(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0.000000057601163, z: 0.000000057601163, w: 0.7071068}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Armature
+      parentName: gibson(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0.000000047078487, z: 0.000000047078487, w: 0.7071068}
+      scale: {x: 100, y: 100, z: 100}
+    - name: root
+      parentName: Armature
+      position: {x: -0.0002354659, y: 0.007981357, z: 0.10483929}
+      rotation: {x: 0.70710325, y: 0.0022243536, z: 0.002224443, w: 0.70710325}
+      scale: {x: 1.0000001, y: 0.9999997, z: 1.0000007}
+    - name: lowertorso
+      parentName: root
+      position: {x: 1.4901161e-10, y: 0.009999989, z: 0.000000002044253}
+      rotation: {x: 0.000000029802322, y: -0.000000029802322, z: -0.000000029802322, w: 1}
+      scale: {x: 1.0000004, y: 1, z: 0.99999976}
+    - name: uppertorso
+      parentName: lowertorso
+      position: {x: -3.7252902e-11, y: 0.023657495, z: -0.0000000023841857}
+      rotation: {x: -0.000000029802322, y: 0.000000029802322, z: 0.000000029802322, w: 1}
+      scale: {x: 0.9999997, y: 0.9999998, z: 1}
+    - name: neck
+      parentName: uppertorso
+      position: {x: -1.4901161e-10, y: 0.03408476, z: -8.9406965e-10}
+      rotation: {x: 0.000000029802322, y: -0.000000029802322, z: -0.000000029802322, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: head
+      parentName: neck
+      position: {x: 5.9604643e-10, y: 0.01797651, z: -0.0000000025331974}
+      rotation: {x: -0, y: -0, z: 8.881784e-16, w: 1}
+      scale: {x: 0.99999976, y: 0.9999999, z: 1}
+    - name: lowerarm.L
+      parentName: uppertorso
+      position: {x: -0.01809072, y: 0.026534433, z: -0.0029732783}
+      rotation: {x: 0.0043808515, y: 0.0043808217, z: 0.7070932, w: 0.7070933}
+      scale: {x: 1.0000011, y: 1.0000007, z: 1.0000004}
+    - name: upperarm.L
+      parentName: lowerarm.L
+      position: {x: -0.000000004917383, y: 0.043566685, z: -0.0000000023841857}
+      rotation: {x: 0.012872311, y: 0.0009538088, z: 0.03772976, w: 0.99920464}
+      scale: {x: 1.0000021, y: 1.0000012, z: 1.0000014}
+    - name: hand.L
+      parentName: upperarm.L
+      position: {x: -5.9604643e-10, y: 0.026043471, z: -0.0000000062584875}
+      rotation: {x: 0.0242961, y: 0.0005223361, z: 0.03773827, w: -0.9989921}
+      scale: {x: 0.9999996, y: 1.0000005, z: 1.0000007}
+    - name: fingers1.L
+      parentName: hand.L
+      position: {x: -0.0000000011920929, y: 0.00516677, z: -0.0022720674}
+      rotation: {x: -0.014008088, y: 0.000000018975696, z: 0.0000000044528856, w: -0.99990195}
+      scale: {x: 1.0000013, y: 1.0000007, z: 1.0000005}
+    - name: fingers2.L
+      parentName: fingers1.L
+      position: {x: -0.000000005364418, y: 0.0028111232, z: 0.0000000038743018}
+      rotation: {x: -0.008764928, y: 0.00030315432, z: 0.034566257, w: 0.99936396}
+      scale: {x: 1.0000017, y: 1.0000012, z: 1.0000017}
+    - name: fingers3.L
+      parentName: fingers2.L
+      position: {x: 8.9406965e-10, y: 0.0032463926, z: 0.0000000077486035}
+      rotation: {x: 0.0000001257285, y: -0.00000002331216, z: -0.09968165, w: 0.9950194}
+      scale: {x: 0.9999994, y: 1, z: 1}
+    - name: thumb1.L
+      parentName: hand.L
+      position: {x: 0.0000000011920929, y: 0.0048410143, z: 0.0031080972}
+      rotation: {x: -0.11790414, y: -0.000000084342894, z: 0.000000017433193, w: -0.993025}
+      scale: {x: 1.0000015, y: 1.0000004, z: 1.0000002}
+    - name: thumb2.L
+      parentName: thumb1.L
+      position: {x: -0, y: 0.0031137015, z: -0.000000005364418}
+      rotation: {x: -0.06875457, y: -0.00000008596776, z: 0.00000010838852, w: 0.99763364}
+      scale: {x: 0.9999995, y: 0.99999994, z: 0.9999995}
+    - name: thumb3.L
+      parentName: thumb2.L
+      position: {x: 0.0000000023841857, y: 0.00344155, z: 0}
+      rotation: {x: 0.11218107, y: 0.00000003668728, z: 0.00000009280659, w: -0.9936878}
+      scale: {x: 1.0000026, y: 1.0000014, z: 1.0000023}
+    - name: lowerarm.R
+      parentName: uppertorso
+      position: {x: 0.020850314, y: 0.02857378, z: -0.000032302738}
+      rotation: {x: -0.0043810243, y: 0.004381051, z: 0.7070932, w: -0.70709336}
+      scale: {x: 1.0000007, y: 1.0000007, z: 1.0000007}
+    - name: upperarm.R
+      parentName: lowerarm.R
+      position: {x: -0.0000000035762786, y: 0.043566685, z: 0.0000000011920929}
+      rotation: {x: -0.012872233, y: 0.0009536587, z: 0.03772975, w: -0.99920464}
+      scale: {x: 1.0000011, y: 1.0000002, z: 1.0000005}
+    - name: hand.R
+      parentName: upperarm.R
+      position: {x: -5.9604643e-10, y: 0.026043478, z: 0.0000000020861626}
+      rotation: {x: -0.024296293, y: 0.0005221946, z: 0.03773811, w: 0.9989921}
+      scale: {x: 0.99999905, y: 1.0000001, z: 1.0000002}
+    - name: fingers1.R
+      parentName: hand.R
+      position: {x: 8.9406965e-10, y: 0.0051667714, z: -0.0022720562}
+      rotation: {x: -0.0140083805, y: -0.00000004156026, z: -0.000000009436914, w: -0.99990195}
+      scale: {x: 1.0000013, y: 1.0000005, z: 1.0000001}
+    - name: fingers2.R
+      parentName: fingers1.R
+      position: {x: 5.9604643e-10, y: 0.0028111225, z: 5.9604643e-10}
+      rotation: {x: -0.008764979, y: -0.00030317085, z: -0.034566045, w: 0.9993639}
+      scale: {x: 0.99999976, y: 0.9999997, z: 0.99999964}
+    - name: fingers3.R
+      parentName: fingers2.R
+      position: {x: -5.9604643e-10, y: 0.0032463884, z: -0.000000002980232}
+      rotation: {x: -0.00000015366817, y: 0.00000008704953, z: -0.099681735, w: -0.99501944}
+      scale: {x: 1.0000005, y: 1.0000006, z: 1.0000014}
+    - name: thumb1.R
+      parentName: hand.R
+      position: {x: 0.0000000011920929, y: 0.0048410064, z: 0.0031081021}
+      rotation: {x: -0.11790436, y: -0.000000022351735, z: 0.000000046042242, w: -0.99302495}
+      scale: {x: 1.0000014, y: 0.99999994, z: 1.0000006}
+    - name: thumb2.R
+      parentName: thumb1.R
+      position: {x: -0.000000004172325, y: 0.0031137078, z: 0.000000007152557}
+      rotation: {x: -0.06875459, y: 0.00000005512724, z: 0.00000008143293, w: 0.99763364}
+      scale: {x: 0.9999998, y: 1.0000008, z: 1.0000001}
+    - name: thumb3.R
+      parentName: thumb2.R
+      position: {x: -0.0000000017881393, y: 0.003441553, z: 0.0000000011920929}
+      rotation: {x: 0.11218116, y: 3.6975573e-10, z: -0.00000006863169, w: -0.99368787}
+      scale: {x: 1.0000031, y: 1.0000025, z: 1.000003}
+    - name: thigh.L
+      parentName: root
+      position: {x: -0.008800369, y: -0.00000245817, z: 0.0016167094}
+      rotation: {x: 0.0000019967551, y: -0.025148878, z: -0.99968374, w: 0.000078365185}
+      scale: {x: 0.9999998, y: 1.0000031, z: 1.0000043}
+    - name: lowerleg.L
+      parentName: thigh.L
+      position: {x: -0.0000000011920929, y: 0.053120248, z: 0.0000000040233132}
+      rotation: {x: 0.023951948, y: 0.00003881772, z: 0.0014766679, w: -0.99971205}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1.0000011}
+    - name: foot.L
+      parentName: lowerleg.L
+      position: {x: 0.0000000017881393, y: 0.039724026, z: -8.9406965e-10}
+      rotation: {x: -0.56168294, y: -0.017887775, z: -0.026194064, w: -0.8267443}
+      scale: {x: 1.0000021, y: 1.0000007, z: 1.0000017}
+    - name: thigh.R
+      parentName: root
+      position: {x: 0.009252188, y: -0.000000019227155, z: 0.0014228347}
+      rotation: {x: 0.0000018775459, y: 0.025148863, z: 0.9996837, w: 0.000078350284}
+      scale: {x: 0.99999976, y: 1.0000018, z: 1.0000035}
+    - name: lowerleg.R
+      parentName: thigh.R
+      position: {x: 5.9604643e-10, y: 0.05312024, z: 0.0000000027380882}
+      rotation: {x: 0.02395198, y: -0.00003888913, z: -0.0014765294, w: -0.99971205}
+      scale: {x: 1.0000005, y: 1.0000011, z: 1.0000017}
+    - name: foot.R
+      parentName: lowerleg.R
+      position: {x: 0.0000000023841857, y: 0.039724033, z: -6.891787e-10}
+      rotation: {x: -0.5616833, y: 0.01788757, z: 0.026193785, w: -0.8267441}
+      scale: {x: 1.0000027, y: 1.0000013, z: 1.0000044}
+    - name: iklegpoie.L
+      parentName: Armature
+      position: {x: -0.050146624, y: 0.0039046775, z: 0.048338473}
+      rotation: {x: -0.000000029802322, y: 0.000000036065405, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1.0000007, y: 1.0000001, z: 1.0000006}
+    - name: iktarget.L
+      parentName: Armature
+      position: {x: -0.028129207, y: 0.016405893, z: 0.011924584}
+      rotation: {x: -0.00000008940696, y: -0.00000002353924, z: -0.70710677, w: 0.7071069}
+      scale: {x: 1.0000007, y: 1.0000001, z: 1.0000008}
+    - name: iklegpoie.R
+      parentName: Armature
+      position: {x: -0.036446203, y: -0.019389305, z: 0.050198033}
+      rotation: {x: -0.000000029802322, y: 0.000000036065405, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000006}
+    - name: iktarget.R
+      parentName: Armature
+      position: {x: 0.044723697, y: 0.0028756605, z: 0.011657781}
+      rotation: {x: -0.000000029802322, y: -0.000000023539243, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000006}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -867,13 +1130,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

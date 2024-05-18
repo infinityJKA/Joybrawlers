@@ -31,8 +31,35 @@ public class Player : MonoBehaviour
 
     public void PlayerUpdate(){
 
+        if(playerNumber == 1){
+            if(playersManager.player2.fighterObject.transform.position.x > fighterObject.transform.position.x){
+                facingInvert = false;
+            }
+            else{
+                facingInvert = true;
+            }
+        }
+        else if(playerNumber == 2){
+            if(playersManager.player1.fighterObject.transform.position.x > fighterObject.transform.position.x){
+                facingInvert = false;
+            }
+            else{
+                facingInvert = true;
+            }
+        }
+
+        if(fighterActionState == FighterActionState.Neutral){
+            if(facingInvert){
+                fighterObject.transform.rotation = Quaternion.Euler(0,0,0);
+            }
+            else{
+                fighterObject.transform.rotation = Quaternion.Euler(0,180,0);
+            }
+        }
+
+
         if(playersManager.battleState == BattleState.Battle){
-            Debug.Log("h");
+            // Debug.Log("h");
             bool acted = false;
 
             if(inputTime.Count == 1){
@@ -107,20 +134,20 @@ public class Player : MonoBehaviour
                             if(inputs[inputs.Count-1] == "6"){         //  WALKING
                                 Action(fighter.WalkForwards, true);
                                 if(xVel < fighter.walkSpeed){
-                                    xVel = fighter.walkSpeed;
+                                    SetVelocityX(fighter.walkSpeed);
                                 }
                             }
                             else if(inputs[inputs.Count-1] == "4"){    // WALKING BACKWARDS
                                 Action(fighter.WalkBackwards, true);
                                 if(xVel > fighter.walkBackSpeed){
-                                    xVel = fighter.walkBackSpeed;
+                                    SetVelocityX(fighter.walkBackSpeed);
                                 }
                             }
                             else{
                                 Action(fighter.Idle, true);           //  IDLE
                                 if(inputs.Count >= 2){
                                     if(inputs[inputs.Count-2] == "4" || inputs[inputs.Count-2] == "6"){
-                                        xVel = 0;
+                                        SetVelocityX(0);
                                     }
                                 }
                             }
@@ -136,6 +163,21 @@ public class Player : MonoBehaviour
             }
 
         }
+    }
+
+    public void AddVelocity(float x, float y){
+        if(facingInvert){
+           x *= -1; 
+        }
+        xVel += x;
+        yVel += y;
+    }
+
+    public void SetVelocityX(float x){
+        if(facingInvert){
+           x *= -1; 
+        }
+        xVel = x;
     }
 
     public void PlayerPhysics(){
@@ -170,6 +212,8 @@ public class Player : MonoBehaviour
         }
 
         BoxData boxData = Instantiate(action.boxData,actionTimeline.transform.position,actionTimeline.transform.rotation);
+        //boxData.modelAnim.
+
         boxData.transform.parent = actionTimeline.transform;
         boxData.PlayerNumber = playerNumber;
         actionTimeline.currentActionName = action.name;
@@ -185,7 +229,7 @@ public class Player : MonoBehaviour
     public void InitializeBattleStart(Vector3 pos, Quaternion rot){
         fighterObject = fighter.model;
         fighterObject = Instantiate(fighterObject,pos, rot);  // THE CODE WILL SELF DESTRUCT AND INFINITELY SPAWN INCOMPLETE PLAYERS IF OBJECT IS NOT DEFINIED HERE, DO NOT CHANGE!!!
-        fighterObject.AddComponent<Animator>();
+        // fighterObject.AddComponent<Animator>();
         animator = fighterObject.GetComponent<Animator>();
         animator.runtimeAnimatorController = fighter.animator;
 
@@ -201,7 +245,7 @@ public class Player : MonoBehaviour
     }
 
     void AddInput(string input){
-        Debug.Log("AddInput()");
+        // Debug.Log("AddInput()");
         if(inputs.Count > 0){
             if(input == "1" || input == "2" || input == "3" || input == "4" || input == "5" || input == "6" || input == "7" || input == "8" || input == "9"){
                 if(input == inputs[inputs.Count-1]){

@@ -26,17 +26,19 @@ public class Players : MonoBehaviour
         if(battleState == BattleState.Initialize){ /////////////////////////////////////////////
             
             player1.InitializeBattleStart(p1_Spawn.transform.position,p1_Spawn.transform.rotation);
-            //pretend p2 is also here
+            player2.InitializeBattleStart(p2_Spawn.transform.position,p2_Spawn.transform.rotation);
 
             //change this to intro later
             battleState = BattleState.Battle;
         }
         else{
-            player1.PlayerUpdate();          
+            player1.PlayerUpdate();     
+            player2.PlayerUpdate();          
         }
     }
 
     void FixedUpdate(){
         player1.PlayerPhysics();
+        player2.PlayerPhysics();
     }
 }

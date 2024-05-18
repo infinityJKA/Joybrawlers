@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51189c0c45307c143932be8b26b0c236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fighter: {fileID: 0}
+  fighter: {fileID: 11400000, guid: d14ebd0e22b469e4e9f832f97e860fa1, type: 2}
   fighterObject: {fileID: 0}
   animator: {fileID: 0}
   HP: 0
@@ -175,15 +175,46 @@ MonoBehaviour:
   meter: 0
   fighterState: 0
   fighterActionState: 0
-  facingInvert: 0
+  facingInvert: 1
   inputs: []
   inputTime: []
-  timelineHandlerPrefab: {fileID: 0}
+  timelineHandlerPrefab: {fileID: 349754878345952383, guid: 86c8b8056a66cc44db9e73a95a417095, type: 3}
   actionTimeline: {fileID: 0}
-  playerNumber: 0
-  playersManager: {fileID: 0}
+  playerNumber: 2
+  playersManager: {fileID: 1036419380}
   xVel: 0
   yVel: 0
+--- !u!1 &572065721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 572065722}
+  m_Layer: 0
+  m_Name: p2spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &572065722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572065721}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 25.4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +342,7 @@ MonoBehaviour:
   player1: {fileID: 1049465392}
   player2: {fileID: 77816003}
   p1_Spawn: {fileID: 1456250676}
-  p2_Spawn: {fileID: 0}
+  p2_Spawn: {fileID: 572065721}
   inputValidTime: 1
   timelineHandlerPrefab: {fileID: 349754878345952383, guid: 86c8b8056a66cc44db9e73a95a417095, type: 3}
   p1_actionTimeline: {fileID: 0}
@@ -942,5 +973,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 1456250677}
+  - {fileID: 572065722}
   - {fileID: 1036419381}
   - {fileID: 1377184550}
