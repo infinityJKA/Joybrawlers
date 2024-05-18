@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveName: 5x
   boxData: {fileID: 4848377656331525961, guid: 8e603b5133cba084e8c49663959c15ab, type: 3}
-  actionStateDuringAction: 3
-  continous: 0
+  actionStateDuringAction: 4

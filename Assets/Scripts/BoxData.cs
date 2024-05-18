@@ -28,7 +28,7 @@ public class BoxData : MonoBehaviour
         frameData.SetGenericBinding(newTrack, model);
 
         frameData.Play();
-        Debug.Log("Play!");
+        // Debug.Log("Play!");
     }
 
     public void EraseExcessLayers(TimelineAsset asset){
@@ -40,7 +40,7 @@ public class BoxData : MonoBehaviour
                                             //        in the timeline editor for some reason but doesn't crash
                                             //        the game or have any noticible effects so far)
         }
-        Debug.Log(asset.outputTrackCount);
+        // Debug.Log(asset.outputTrackCount);
     }
 
     public void EraseOneExcessLayer(TimelineAsset asset){

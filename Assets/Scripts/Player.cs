@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public void PlayerUpdate(){
 
         if(playersManager.battleState == BattleState.Battle){
-
+            Debug.Log("h");
             bool acted = false;
 
             if(inputTime.Count == 1){
@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
             RemoveInputs();
             CheckDirectionDown();
             CheckDirectionRelease();
+            Debug.Log("j");
             
             if(fighterActionState != FighterActionState.Attacking || fighterActionState != FighterActionState.Attacking){
                 if(Input.GetButtonDown("p" + playerNumber + " x")){
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if(fighterActionState == FighterActionState.Attacking){
+            if(fighterActionState == FighterActionState.Attacking || fighterActionState == FighterActionState.Cancellable){
                 if(fighterObject.GetComponentInChildren<PlayableDirector>().state != PlayState.Playing){
                     fighterActionState = FighterActionState.Neutral;
                 }
@@ -62,22 +63,24 @@ public class Player : MonoBehaviour
             for(int i = 0; i < fighter.inputActions.Count; i++){
                 ActionInput inputAction = fighter.inputActions[i];
                 if(!acted){
-                    if(fighterState == inputAction.validFighterState && fighterActionState == inputAction.validActionState){ // instantly skip if invalid state
-                        if(inputAction.meter <= meter ){ // instantly skip check if not enough meter
-                            if(inputAction.requiredInputs.Count <= inputs.Count){  /// instantly skip check if physically not enough inputs
-                                bool validInput = true;
-                                for(int j = 0; j < inputAction.requiredInputs.Count; j++){  /// loop through each required input
-                                    string a = inputAction.requiredInputs[j]; // input required
-                                    string b =inputs[inputs.Count-inputAction.requiredInputs.Count+j]; // input given
-                                    if(a != b){
-                                        validInput = false;
+                    if(fighterState == inputAction.validFighterState){ // instantly skip if invalid state
+                        if(fighterActionState == inputAction.validActionState || fighterActionState == FighterActionState.Cancellable  &&  inputAction.validActionState == FighterActionState.Neutral){ // also checks for cancellable moves
+                            if(inputAction.meter <= meter ){ // instantly skip check if not enough meter
+                                if(inputAction.requiredInputs.Count <= inputs.Count){  /// instantly skip check if physically not enough inputs
+                                    bool validInput = true;
+                                    for(int j = 0; j < inputAction.requiredInputs.Count; j++){  /// loop through each required input
+                                        string a = inputAction.requiredInputs[j]; // input required
+                                        string b =inputs[inputs.Count-inputAction.requiredInputs.Count+j]; // input given
+                                        if(a != b){
+                                            validInput = false;
+                                        }
                                     }
-                                }
-                                if(validInput){
-                                    Action(inputAction.action,true);
-                                    acted = true;
-                                    ResetInputLists();
+                                    if(validInput){
+                                        Action(inputAction.action,true);
+                                        acted = true;
+                                        ResetInputLists();
 
+                                    }
                                 }
                             }
                         }
@@ -132,14 +135,19 @@ public class Player : MonoBehaviour
                 }
             }
 
-            fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,fighterObject.transform.position[1]+yVel,0);
-            xVel = xVel*0.7f;
-            yVel = yVel*0.7f; 
-
-
         }
+    }
 
-
+    public void PlayerPhysics(){
+        if(fighterObject.transform.position[1]+yVel < 0){
+                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,0,0);
+            }
+            else{
+                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,fighterObject.transform.position[1]+yVel,0);
+            }
+            // xVel -= 0.001f;
+            xVel = xVel*0.985f;
+            yVel = yVel*0.985f; 
     }
 
     void Action(Action action, bool continous){
@@ -193,6 +201,15 @@ public class Player : MonoBehaviour
     }
 
     void AddInput(string input){
+        Debug.Log("AddInput()");
+        if(inputs.Count > 0){
+            if(input == "1" || input == "2" || input == "3" || input == "4" || input == "5" || input == "6" || input == "7" || input == "8" || input == "9"){
+                if(input == inputs[inputs.Count-1]){
+                    return;  // Prevents double direct input glitch
+                }
+            }
+        }
+
         inputs.Add(input);
         inputTime.Add(Time.time);
         // Debug.Log(input);
@@ -210,6 +227,7 @@ public class Player : MonoBehaviour
     }
 
     void CheckDirectionDown(){
+        Debug.Log("CheckDirectionDown()");
         if(Input.GetButtonDown("p" + playerNumber + " down")){
             if(Input.GetButton("p" + playerNumber + " left")){
                 if(facingInvert == false){AddInput("1");}
