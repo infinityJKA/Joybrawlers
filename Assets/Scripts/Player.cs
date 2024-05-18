@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public int playerNumber; //"p1" or "p2"
     public Players playersManager;
     public float xVel,yVel;
+    public GameObject bodyCollider;
+    public float bodyColliderOffsetY = 5.25f;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -48,7 +50,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(fighterActionState == FighterActionState.Neutral){
+        if(fighterActionState == FighterActionState.Neutral){      // CHANGE FACING
             if(facingInvert){
                 // fighterObject.transform.rotation = Quaternion.Euler(0,0,0);
                 fighterObject.transform.localScale = new Vector3(-1,1,1);
@@ -186,12 +188,13 @@ public class Player : MonoBehaviour
         if(fighterObject.transform.position[1]+yVel < 0){
                 fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,0,0);
             }
-            else{
-                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,fighterObject.transform.position[1]+yVel,0);
-            }
-            // xVel -= 0.001f;
-            xVel = xVel*0.915f;
-            yVel = yVel*0.915f; 
+        else{
+            fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,fighterObject.transform.position[1]+yVel,0);
+        }
+        // fighterObject.transform.position = bodyCollider.transform.position;
+        // xVel -= 0.001f;
+        xVel = xVel*0.915f;
+        yVel = yVel*0.915f; 
     }
 
     void Action(Action action, bool continous){
@@ -237,6 +240,9 @@ public class Player : MonoBehaviour
         // fighterObject.AddComponent<Animator>();
         animator = fighterObject.GetComponent<Animator>();
         animator.runtimeAnimatorController = fighter.animator;
+
+        bodyCollider = Instantiate(bodyCollider,new Vector3(pos.x,pos.y+bodyColliderOffsetY,pos.z), rot);
+        bodyCollider.transform.parent = fighterObject.transform;
 
         actionTimeline = Instantiate(timelineHandlerPrefab,fighterObject.transform.position,fighterObject.transform.rotation);  // THE CODE WILL SELF DESTRUCT AND INFINITELY SPAWN INCOMPLETE PLAYERS IF OBJECT IS NOT DEFINIED HERE, DO NOT CHANGE!!!
         actionTimeline.transform.parent = fighterObject.transform;
