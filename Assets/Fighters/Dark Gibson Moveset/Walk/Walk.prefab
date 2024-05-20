@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 9194391570658060468}
   - component: {fileID: 3596637727314176988}
   - component: {fileID: 4407320545951646582}
+  - component: {fileID: 8901578496469420430}
   m_Layer: 0
   m_Name: hurt1
   m_TagString: Untagged
@@ -174,7 +175,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -213,6 +214,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a896199e30b5e1e4dbf5d28e434d87b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxType: 0
+  damage: 0
+  hitstun: 0
+  knockbackDelay: 0
+  xKnockback: 0
+  yKnockback: 0
+  trip: 0
+  knockdown: 0
+  attackType: 0
+  playerNumber: 0
+--- !u!54 &8901578496469420430
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376198164301322436}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &9168088518501079390
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +264,8 @@ GameObject:
   - component: {fileID: 5813718138641666209}
   - component: {fileID: 5222273936863141343}
   - component: {fileID: 3297133481843811887}
+  - component: {fileID: 6141574829254496146}
+  - component: {fileID: 315033791627902431}
   m_Layer: 0
   m_Name: hurt2
   m_TagString: Untagged
@@ -313,7 +353,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -340,3 +380,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6141574829254496146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9168088518501079390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a896199e30b5e1e4dbf5d28e434d87b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxType: 0
+  damage: 0
+  hitstun: 0
+  knockbackDelay: 0
+  xKnockback: 0
+  yKnockback: 0
+  trip: 0
+  knockdown: 0
+  attackType: 0
+  playerNumber: 0
+--- !u!54 &315033791627902431
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9168088518501079390}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -23,9 +23,7 @@ public class Player : MonoBehaviour
     public TimelineHandler timelineHandlerPrefab,actionTimeline;
     public int playerNumber; //"p1" or "p2"
     public Players playersManager;
-    public float xVel,yVel;
-    public GameObject bodyCollider;
-    public float bodyColliderOffsetY = 5.25f;
+    public float xVel,yVel,xVelContact,yVelContact;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -73,7 +71,6 @@ public class Player : MonoBehaviour
             RemoveInputs();
             CheckDirectionDown();
             CheckDirectionRelease();
-            Debug.Log("j");
             
             if(fighterActionState != FighterActionState.Attacking || fighterActionState != FighterActionState.Attacking){
                 if(Input.GetButtonDown("p" + playerNumber + " x")){
@@ -186,15 +183,21 @@ public class Player : MonoBehaviour
 
     public void PlayerPhysics(){
         if(fighterObject.transform.position[1]+yVel < 0){
-                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,0,0);
+                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,0,0);
             }
         else{
-            fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel,fighterObject.transform.position[1]+yVel,0);
+            fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
         }
         // fighterObject.transform.position = bodyCollider.transform.position;
         // xVel -= 0.001f;
-        xVel = xVel*0.915f;
-        yVel = yVel*0.915f; 
+
+        float n = 0.915f;
+        if(fighter.name == "Dark Gibson"){
+            n = 0.95f;
+        }
+
+        xVel = xVel*n;
+        yVel = yVel*n; 
     }
 
     void Action(Action action, bool continous){
@@ -204,12 +207,6 @@ public class Player : MonoBehaviour
 
         // set action state
         fighterActionState = action.actionStateDuringAction;
-
-        // // erases inputs
-        // if(fighterActionState != FighterActionState.Neutral){
-        //     inputs.Clear();
-        //     inputTime.Clear();
-        // }
         
         // destroys preexisting animation timeline
         if(actionTimeline.transform.childCount > 0){
@@ -220,7 +217,6 @@ public class Player : MonoBehaviour
         if(facingInvert){
             boxData.transform.Rotate(0,180,0);
         }
-        //boxData.modelAnim.
 
         boxData.transform.parent = actionTimeline.transform;
         boxData.PlayerNumber = playerNumber;
@@ -240,9 +236,6 @@ public class Player : MonoBehaviour
         // fighterObject.AddComponent<Animator>();
         animator = fighterObject.GetComponent<Animator>();
         animator.runtimeAnimatorController = fighter.animator;
-
-        bodyCollider = Instantiate(bodyCollider,new Vector3(pos.x,pos.y+bodyColliderOffsetY,pos.z), rot);
-        bodyCollider.transform.parent = fighterObject.transform;
 
         actionTimeline = Instantiate(timelineHandlerPrefab,fighterObject.transform.position,fighterObject.transform.rotation);  // THE CODE WILL SELF DESTRUCT AND INFINITELY SPAWN INCOMPLETE PLAYERS IF OBJECT IS NOT DEFINIED HERE, DO NOT CHANGE!!!
         actionTimeline.transform.parent = fighterObject.transform;
@@ -282,7 +275,6 @@ public class Player : MonoBehaviour
     }
 
     void CheckDirectionDown(){
-        Debug.Log("CheckDirectionDown()");
         if(Input.GetButtonDown("p" + playerNumber + " down")){
             if(Input.GetButton("p" + playerNumber + " left")){
                 if(facingInvert == false){AddInput("1");}
