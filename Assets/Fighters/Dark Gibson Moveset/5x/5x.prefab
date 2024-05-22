@@ -121,16 +121,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxType: 1
-  damage: 85
-  hitstun: 1
-  knockbackDelay: 0.5
-  xKnockback: 5
+  damage: 60
+  hitstun: 0.3
+  freeze: 0.05
+  xKnockback: 0.35
   yKnockback: 0
   trip: 0
   knockdown: 0
   attackType: 0
   playerNumber: 0
   ActiveHurtCollisions: 0
+  actionableOnHit: 0
+  superArmor: 0
+  superArmorEndurance: 0
   players: {fileID: 0}
 --- !u!95 &7812972764587114595
 Animator:
@@ -255,6 +258,16 @@ PlayableDirector:
   - key: {fileID: 4131417708671738142, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
     value: {fileID: 5144681821541630996}
   - key: {fileID: -7045743693741126457, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8921548048093346519, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: -7379527854940766458, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References:
@@ -382,7 +395,7 @@ MonoBehaviour:
   boxType: 0
   damage: 0
   hitstun: 0
-  knockbackDelay: 0
+  freeze: 0
   xKnockback: 0
   yKnockback: 0
   trip: 0
@@ -390,6 +403,9 @@ MonoBehaviour:
   attackType: 0
   playerNumber: 0
   ActiveHurtCollisions: 0
+  actionableOnHit: 0
+  superArmor: 0
+  superArmorEndurance: 0
   players: {fileID: 0}
 --- !u!95 &4462028382591525276
 Animator:
@@ -562,7 +578,7 @@ MonoBehaviour:
   boxType: 0
   damage: 0
   hitstun: 0
-  knockbackDelay: 0
+  freeze: 0
   xKnockback: 0
   yKnockback: 0
   trip: 0
@@ -570,6 +586,9 @@ MonoBehaviour:
   attackType: 0
   playerNumber: 0
   ActiveHurtCollisions: 0
+  actionableOnHit: 0
+  superArmor: 0
+  superArmorEndurance: 0
   players: {fileID: 0}
 --- !u!95 &5144681821541630996
 Animator:

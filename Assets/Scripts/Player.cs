@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Playables;
+using System.Data.Common;
 
 
 public class Player : MonoBehaviour
@@ -24,6 +25,11 @@ public class Player : MonoBehaviour
     public int playerNumber; //"p1" or "p2"
     public Players playersManager;
     public float xVel,yVel,xVelContact,yVelContact;
+    public float freezeTimer,freezeTime, stunTimer,stunTime;
+    public int comboed;
+    public bool incomingKnockback;
+    public float incomingXvel,incomingYvel;
+    public float lastHitTime;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -163,7 +169,49 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if(fighterActionState == FighterActionState.Hit){         // deal with hitstun and related things
+
+                if(incomingKnockback){
+                    if(freezeTimer + freezeTime < Time.time){
+                        AddVelocity(incomingXvel*-1,incomingYvel);
+                        incomingKnockback = false;
+                    }
+                }
+
+                if(stunTimer + stunTime < Time.time){
+                    comboed = 0;
+                    fighterActionState = FighterActionState.Neutral;
+                }
+                else if(fighterState == FighterState.Standing || fighterState == FighterState.Crouching){
+                    Action(fighter.GroundHit,true);
+                }
+            }
+
         }
+    }
+
+    public void GetHit(int damage, float freeze, float stun, float xKnockback, float yKnockback, bool willTrip, bool willKnockdown, bool superArmored){
+        if(lastHitTime != Time.time){ // prevents overlapping hurtboxes getting hit multiple times at once
+            lastHitTime = Time.time;
+            Debug.Log("Got hit!");
+            HP -= damage;
+            if(!superArmored){
+                incomingKnockback = true;
+                incomingXvel = xKnockback;
+                incomingYvel = yKnockback;
+
+                float t = Time.time;
+                freezeTime = freeze;
+                freezeTimer = t;
+                stunTime = stun;
+                stunTimer = t;
+
+                comboed += 1;
+
+                fighterActionState = FighterActionState.Hit;
+            }
+        }
+
     }
 
     public void AddVelocity(float x, float y){
@@ -182,22 +230,24 @@ public class Player : MonoBehaviour
     }
 
     public void PlayerPhysics(){
-        if(fighterObject.transform.position[1]+yVel < 0){
-                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,0,0);
+        if(!incomingKnockback){ // pauses during freeze
+            if(fighterObject.transform.position[1]+yVel < 0){
+                    fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,0,0);
+                }
+            else{
+                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
             }
-        else{
-            fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
-        }
-        // fighterObject.transform.position = bodyCollider.transform.position;
-        // xVel -= 0.001f;
+            // fighterObject.transform.position = bodyCollider.transform.position;
+            // xVel -= 0.001f;
 
-        float n = 0.915f;
-        if(fighter.name == "Dark Gibson"){
-            n = 0.95f;
-        }
+            float n = 0.915f;
+            // if(fighter.name == "Dark Gibson"){
+            //     n = 0.965f;
+            // }
 
-        xVel = xVel*n;
-        yVel = yVel*n; 
+            xVel = xVel*n;
+            yVel = yVel*n; 
+        }
     }
 
     void Action(Action action, bool continous){

@@ -7,11 +7,14 @@ public class Box : MonoBehaviour
 {
     public BoxType boxType = BoxType.Hurtbox;
     public int damage = 0;
-    public float hitstun,knockbackDelay,xKnockback,yKnockback;
+    public float hitstun,freeze,xKnockback,yKnockback;
     public bool trip = false,knockdown = false;
     public AttackType attackType;
     public int playerNumber;
     public int ActiveHurtCollisions = 0;
+    public bool actionableOnHit;
+    public bool superArmor = false;
+    public int superArmorEndurance;
     public Players players;
 
 
@@ -27,7 +30,27 @@ public class Box : MonoBehaviour
         if(c.gameObject.GetComponent<Box>() == true){
             Box otherBox = c.gameObject.GetComponent<Box>(); 
             if(otherBox.playerNumber != playerNumber){
-                if(boxType == BoxType.Hurtbox && otherBox.boxType == BoxType.Hurtbox){
+                if(boxType == BoxType.Hitbox & otherBox.boxType == BoxType.Hurtbox){
+                    Debug.Log("GET HIT LMAO");
+                    bool armoredThrough = false;
+                    if(otherBox.superArmor & otherBox.superArmorEndurance > damage){
+                        armoredThrough = true;
+                    }
+                    if(playerNumber == 1){
+                        players.player2.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough);
+                        if(actionableOnHit){
+                            players.player1.fighterActionState = FighterActionState.Cancellable;
+                        }
+                    }
+                    else{
+                        players.player1.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough);
+                        if(actionableOnHit){
+                            players.player1.fighterActionState = FighterActionState.Cancellable;
+                        }
+                    }
+                    Destroy(gameObject);
+                }
+                else if(boxType == BoxType.Hurtbox && otherBox.boxType == BoxType.Hurtbox){
                     ActiveHurtCollisions += 1;
                 }
             }

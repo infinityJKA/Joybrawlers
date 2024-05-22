@@ -30,7 +30,7 @@ MonoBehaviour:
   WalkBackwards: {fileID: 11400000, guid: d30518cc07d72bc41befa293a61ceee3, type: 2}
   Jump: {fileID: 0}
   AirJump: {fileID: 0}
-  GroundHit: {fileID: 0}
+  GroundHit: {fileID: 11400000, guid: b61ca0db35722a840b4533ca1bc75520, type: 2}
   AirHit: {fileID: 0}
   KnockedDown: {fileID: 0}
   LaunchUp: {fileID: 0}

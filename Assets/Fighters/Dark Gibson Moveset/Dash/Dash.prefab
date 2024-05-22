@@ -144,7 +144,7 @@ MonoBehaviour:
   boxType: 0
   damage: 0
   hitstun: 0
-  knockbackDelay: 0
+  freeze: 0
   xKnockback: 0
   yKnockback: 0
   trip: 0
@@ -152,6 +152,9 @@ MonoBehaviour:
   attackType: 0
   playerNumber: 0
   ActiveHurtCollisions: 0
+  actionableOnHit: 0
+  superArmor: 0
+  superArmorEndurance: 0
   players: {fileID: 0}
 --- !u!54 &584935157205814996
 Rigidbody:
@@ -358,6 +361,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 0}
     value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: -3578848958572081670, guid: 4aa780a18d7116e4db8f234931f068e4, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &5495862552514086647
@@ -386,7 +393,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 1.3
+            m_FloatArgument: 1
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
