@@ -8,9 +8,9 @@ public class Fighter : ScriptableObject
 {
     public string fighterName;
     public int maxHP;
-    public int jumpHeight;
+    public float jumpHeight;
     public int airJumps;
-    public int airJumpHeight;
+    public float airJumpHeight;
     public float walkSpeed,walkBackSpeed;
     public Sprite smallSelectIcon;
     public Sprite bigSelectIcon;

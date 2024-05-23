@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fighterName: Dark Gibson
   maxHP: 1000
-  jumpHeight: 0
+  jumpHeight: 2.5
   airJumps: 0
   airJumpHeight: 0
   walkSpeed: 0.3
@@ -28,7 +28,7 @@ MonoBehaviour:
   AirIdle: {fileID: 0}
   WalkForwards: {fileID: 11400000, guid: 8a0f3321bfbfb4845abf0e7b5e880720, type: 2}
   WalkBackwards: {fileID: 11400000, guid: d30518cc07d72bc41befa293a61ceee3, type: 2}
-  Jump: {fileID: 0}
+  Jump: {fileID: 11400000, guid: 70f552b625343934886944ce30ed44de, type: 2}
   AirJump: {fileID: 0}
   GroundHit: {fileID: 11400000, guid: b61ca0db35722a840b4533ca1bc75520, type: 2}
   AirHit: {fileID: 0}

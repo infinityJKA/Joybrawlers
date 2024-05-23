@@ -124,12 +124,21 @@ public class Player : MonoBehaviour
 
             
             if(fighterActionState == FighterActionState.Neutral){
-                if(inputs.Count > 0){
-                    if(inputs[inputs.Count-1] == "2" || inputs[inputs.Count-1] == "1" || inputs[inputs.Count-1] == "3"){
-                        fighterState = FighterState.Crouching;
-                    }
-                    else if(inputs[inputs.Count-1] == "4" || inputs[inputs.Count-1] == "5" || inputs[inputs.Count-1] == "6"){
-                        fighterState = FighterState.Standing;
+                if(fighterObject.transform.position.y > 0){
+                    fighterState = FighterState.InAir;
+                }
+                else{
+                    if(inputs.Count > 0){
+                        if(inputs[inputs.Count-1] == "2" || inputs[inputs.Count-1] == "1" || inputs[inputs.Count-1] == "3"){
+                            fighterState = FighterState.Crouching;
+                        }
+                        else if(inputs[inputs.Count-1] == "4" || inputs[inputs.Count-1] == "5" || inputs[inputs.Count-1] == "6"){
+                            fighterState = FighterState.Standing;
+                        }
+                        
+                        if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
+                            Action(fighter.Jump, true);
+                        }
                     }
                 }
             }
@@ -231,14 +240,20 @@ public class Player : MonoBehaviour
 
     public void PlayerPhysics(){
         if(!incomingKnockback){ // pauses during freeze
-            if(fighterObject.transform.position[1]+yVel < 0){
-                    fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,0,0);
-                }
-            else{
-                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
+            
+            if(fighterObject.transform.position[1]+yVel < 0 && fighterObject.transform.position.y + yVel < fighterObject.transform.position.y){
+                Debug.Log("YOU LANDED");
+                yVel = 0;
+                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0],0,fighterObject.transform.position[2]);
             }
-            // fighterObject.transform.position = bodyCollider.transform.position;
-            // xVel -= 0.001f;
+            else{
+                yVel -= 0.1f;
+            }
+            
+        
+            fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
+        
+            
 
             float n = 0.915f;
             // if(fighter.name == "Dark Gibson"){
@@ -246,7 +261,7 @@ public class Player : MonoBehaviour
             // }
 
             xVel = xVel*n;
-            yVel = yVel*n; 
+            yVel = yVel*n;
         }
     }
 
