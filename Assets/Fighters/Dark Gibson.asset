@@ -25,13 +25,13 @@ MonoBehaviour:
   animator: {fileID: 9100000, guid: 7f0b95edcd3c41841ae42e8797f1e1b1, type: 2}
   Idle: {fileID: 11400000, guid: 590a431f957c0d848986d5bcaf6a65e3, type: 2}
   Crouching: {fileID: 11400000, guid: 1841073ff0139e34bb37350a39b48217, type: 2}
-  AirIdle: {fileID: 0}
+  AirIdle: {fileID: 11400000, guid: a9bd2db953120ab418c8d7cfc45db248, type: 2}
   WalkForwards: {fileID: 11400000, guid: 8a0f3321bfbfb4845abf0e7b5e880720, type: 2}
   WalkBackwards: {fileID: 11400000, guid: d30518cc07d72bc41befa293a61ceee3, type: 2}
   Jump: {fileID: 11400000, guid: 70f552b625343934886944ce30ed44de, type: 2}
   AirJump: {fileID: 0}
   GroundHit: {fileID: 11400000, guid: b61ca0db35722a840b4533ca1bc75520, type: 2}
-  AirHit: {fileID: 0}
+  AirHit: {fileID: 11400000, guid: 690805a42d5032f40a93cd3a8ec1b365, type: 2}
   KnockedDown: {fileID: 0}
   LaunchUp: {fileID: 0}
   LaunchDown: {fileID: 0}

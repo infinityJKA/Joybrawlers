@@ -175,6 +175,9 @@ public class Player : MonoBehaviour
                     else if(fighterState == FighterState.Crouching){
                         Action(fighter.Crouching, true);
                     }
+                    else if(fighterState == FighterState.InAir){
+                        Action(fighter.AirIdle, true);
+                    }
                 }
             }
 
@@ -193,6 +196,9 @@ public class Player : MonoBehaviour
                 }
                 else if(fighterState == FighterState.Standing || fighterState == FighterState.Crouching){
                     Action(fighter.GroundHit,true);
+                }
+                else{
+                    Action(fighter.AirHit,true);
                 }
             }
 
