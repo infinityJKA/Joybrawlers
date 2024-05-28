@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b6366358384034f8d5cb13a3560fcb, type: 3}
-  m_Name: 5x
+  m_Name: 5y
   m_EditorClassIdentifier: 
-  moveName: 5x
-  boxData: {fileID: 4848377656331525961, guid: 8e603b5133cba084e8c49663959c15ab, type: 3}
+  moveName: 5y
+  boxData: {fileID: 6446637328618264802, guid: 9eec3b3a7cf5b0446959130cbfc505af, type: 3}
   actionStateDuringAction: 4
-  CancelInto:
-  - {fileID: 11400000, guid: 8be37283603d38b47a887c660f803045, type: 2}
+  CancelInto: []

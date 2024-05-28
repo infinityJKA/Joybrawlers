@@ -31,19 +31,21 @@ public class Box : MonoBehaviour
             Box otherBox = c.gameObject.GetComponent<Box>(); 
             if(otherBox.playerNumber != playerNumber){
                 if(boxType == BoxType.Hitbox & otherBox.boxType == BoxType.Hurtbox){
-                    Debug.Log("GET HIT LMAO");
+                    // Debug.Log("GET HIT LMAO");
                     bool armoredThrough = false;
                     if(otherBox.superArmor & otherBox.superArmorEndurance > damage){
                         armoredThrough = true;
                     }
                     if(playerNumber == 1){
                         players.player2.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough);
+                        players.player1.moveHasHit = true;
                         if(actionableOnHit){
                             players.player1.fighterActionState = FighterActionState.Cancellable;
                         }
                     }
                     else{
                         players.player1.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough);
+                        players.player2.moveHasHit = true;
                         if(actionableOnHit){
                             players.player1.fighterActionState = FighterActionState.Cancellable;
                         }
@@ -58,7 +60,6 @@ public class Box : MonoBehaviour
     }
 
     void OnTriggerStay(Collider c){
-        Debug.Log("JJJ");
         if(boxType == BoxType.Hurtbox){
             if(c.gameObject.GetComponent<Box>() == true){
                 Box otherBox = c.gameObject.GetComponent<Box>(); 

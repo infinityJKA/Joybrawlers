@@ -19,7 +19,7 @@ public class Players : MonoBehaviour
     public TimelineHandler timelineHandlerPrefab,p1_actionTimeline,p2_actionTimeline;
 
     void Start(){
-        Application.targetFrameRate = 60; 
+        Application.targetFrameRate = 200; 
     }
 
     void Update(){

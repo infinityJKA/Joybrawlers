@@ -13,6 +13,7 @@ public class Action : ScriptableObject
     public BoxData boxData; //prefab i will spawn when attack is instantiated 
     
     public FighterActionState actionStateDuringAction = FighterActionState.Attacking;
+    public List<Action> CancelInto;
 
 }
 

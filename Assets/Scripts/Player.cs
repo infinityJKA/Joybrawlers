@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     public bool incomingKnockback;
     public float incomingXvel,incomingYvel;
     public float lastHitTime;
+    public Action currentAction;
+    public bool moveHasHit;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -78,7 +80,7 @@ public class Player : MonoBehaviour
             CheckDirectionDown();
             CheckDirectionRelease();
             
-            if(fighterActionState != FighterActionState.Attacking || fighterActionState != FighterActionState.Attacking){
+            if(fighterActionState != FighterActionState.Attacking || moveHasHit){
                 if(Input.GetButtonDown("p" + playerNumber + " x")){
                     AddInput("x");
                 }
@@ -98,7 +100,7 @@ public class Player : MonoBehaviour
                 ActionInput inputAction = fighter.inputActions[i];
                 if(!acted){
                     if(fighterState == inputAction.validFighterState){ // instantly skip if invalid state
-                        if(fighterActionState == inputAction.validActionState || fighterActionState == FighterActionState.Cancellable  &&  inputAction.validActionState == FighterActionState.Neutral){ // also checks for cancellable moves
+                        if(fighterActionState == inputAction.validActionState || fighterActionState == FighterActionState.Cancellable  &&  inputAction.validActionState == FighterActionState.Neutral || fighterActionState == FighterActionState.Attacking && currentAction.CancelInto.Count > 0 && moveHasHit){ // also checks for cancellable moves
                             if(inputAction.meter <= meter ){ // instantly skip check if not enough meter
                                 if(inputAction.requiredInputs.Count <= inputs.Count){  /// instantly skip check if physically not enough inputs
                                     bool validInput = true;
@@ -110,9 +112,26 @@ public class Player : MonoBehaviour
                                         }
                                     }
                                     if(validInput){
-                                        Action(inputAction.action,true);
-                                        acted = true;
-                                        ResetInputLists();
+                                        if(inputAction.validActionState == FighterActionState.Attacking || fighterActionState != FighterActionState.Attacking && fighterActionState != FighterActionState.Attacking){
+                                            Action(inputAction.action,true);
+                                            acted = true;
+                                            ResetInputLists();
+                                        }
+                                        else{  // Check for attack cancelling inputs
+                                            if(fighterActionState == FighterActionState.Attacking){
+                                                validInput = false;
+                                                foreach(Action a in currentAction.CancelInto){
+                                                    if(a == inputAction.action){
+                                                        validInput = true;
+                                                    }
+                                                }
+                                                if(validInput){
+                                                    Action(inputAction.action,true);
+                                                acted = true;
+                                                ResetInputLists();
+                                                }
+                                            }
+                                        }
 
                                     }
                                 }
@@ -292,6 +311,9 @@ public class Player : MonoBehaviour
         boxData.transform.parent = actionTimeline.transform;
         boxData.PlayerNumber = playerNumber;
         actionTimeline.currentActionName = action.name;
+
+        currentAction = action;
+        moveHasHit = false;
 
         boxData.StartAnim(fighterObject);
     }
