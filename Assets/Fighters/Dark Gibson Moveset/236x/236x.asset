@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b6366358384034f8d5cb13a3560fcb, type: 3}
-  m_Name: 5y
+  m_Name: 236x
   m_EditorClassIdentifier: 
-  moveName: 5y
-  boxData: {fileID: 6446637328618264802, guid: 9eec3b3a7cf5b0446959130cbfc505af, type: 3}
+  moveName: Slide
+  boxData: {fileID: 1206767021733326604, guid: 0e2ef7503b6a6f54cb927cc45c456640, type: 3}
   actionStateDuringAction: 4
-  CancelInto:
-  - {fileID: 11400000, guid: f063e6e69157bf54ab11f3e0dd25881f, type: 2}
+  CancelInto: []
