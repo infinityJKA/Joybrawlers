@@ -80,14 +80,14 @@ public class Player : MonoBehaviour
             CheckDirectionDown();
             CheckDirectionRelease();
             
-            if(fighterActionState != FighterActionState.Attacking || moveHasHit){
+            // if(fighterActionState != FighterActionState.Attacking || moveHasHit){
                 if(Input.GetButtonDown("p" + playerNumber + " x")){
                     AddInput("x");
                 }
                 else if(Input.GetButtonDown("p" + playerNumber + " y")){
                     AddInput("y");
                 }
-            }
+            // }
 
             if(fighterActionState == FighterActionState.Attacking || fighterActionState == FighterActionState.Cancellable){
                 if(fighterObject.GetComponentInChildren<PlayableDirector>().state != PlayState.Playing){
@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
                                                     }
                                                 }
                                                 if(validInput){
+                                                    Debug.Log("CANCELLED!");
                                                     Action(inputAction.action,true);
                                                 acted = true;
                                                 ResetInputLists();

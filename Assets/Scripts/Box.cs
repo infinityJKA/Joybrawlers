@@ -6,7 +6,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     public BoxType boxType = BoxType.Hurtbox;
-    public int damage = 0;
+    public int damage = 0,chipDamage = 0;
     public float hitstun,freeze,xKnockback,yKnockback;
     public bool trip = false,knockdown = false;
     public AttackType attackType;

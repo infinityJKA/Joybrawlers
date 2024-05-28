@@ -51,6 +51,15 @@ MonoBehaviour:
     meter: 0
     action: {fileID: 11400000, guid: f063e6e69157bf54ab11f3e0dd25881f, type: 2}
   - requiredInputs:
+    - 2
+    - 3
+    - 6
+    - y
+    validFighterState: 0
+    validActionState: 0
+    meter: 0
+    action: {fileID: 11400000, guid: 7a40260f66f722a4c918e83c67969e90, type: 2}
+  - requiredInputs:
     - x
     validFighterState: 0
     validActionState: 0
