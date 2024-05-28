@@ -22,6 +22,7 @@ public class Fighter : ScriptableObject
     Jump,AirJump,
     GroundHit,AirHit,
     KnockedDown,LaunchUp,LaunchDown,
+    NeutralGetUp,GetUpAttack,GetUpRoll,
     GroundShield,CrouchShield,AirShield,
     Victory,Lose;
 

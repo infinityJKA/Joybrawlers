@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     public int playerNumber; //"p1" or "p2"
     public Players playersManager;
     public float xVel,yVel,xVelContact,yVelContact;
-    public float freezeTimer,freezeTime, stunTimer,stunTime;
+    public float freezeTimer,freezeTime, stunTimer,stunTime, knockdownTimer;
+    public bool knockedDownOnGround;
     public int comboed;
     public bool incomingKnockback;
     public float incomingXvel,incomingYvel;
@@ -79,17 +80,26 @@ public class Player : MonoBehaviour
             RemoveInputs();
             CheckDirectionDown();
             CheckDirectionRelease();
+
+            if(fighterActionState != FighterActionState.Knockdown){
+                knockedDownOnGround = false;
+            }
             
             // if(fighterActionState != FighterActionState.Attacking || moveHasHit){
-                if(Input.GetButtonDown("p" + playerNumber + " x")){
-                    AddInput("x");
-                }
-                else if(Input.GetButtonDown("p" + playerNumber + " y")){
-                    AddInput("y");
-                }
+            if(Input.GetButtonDown("p" + playerNumber + " x")){
+                AddInput("x");
+            }
+            else if(Input.GetButtonDown("p" + playerNumber + " y")){
+                AddInput("y");
+            }
             // }
 
-            if(fighterActionState == FighterActionState.Attacking || fighterActionState == FighterActionState.Cancellable){
+            if(fighterState != FighterState.InAir && fighterActionState == FighterActionState.Knockdown && !knockedDownOnGround){
+                knockdownTimer = Time.time;
+                knockedDownOnGround = true;
+            }
+
+            if(fighterActionState == FighterActionState.Attacking || fighterActionState == FighterActionState.Cancellable || fighterActionState == FighterActionState.NonattackAction){
                 if(fighterObject.GetComponentInChildren<PlayableDirector>().state != PlayState.Playing){
                     fighterActionState = FighterActionState.Neutral;
                 }
@@ -199,6 +209,19 @@ public class Player : MonoBehaviour
                         Action(fighter.AirIdle, true);
                     }
                 }
+                else if(fighterActionState == FighterActionState.Knockdown){
+                    if(inputs.Count > 0 && knockdownTimer + 1 < Time.time && fighterState != FighterState.InAir){
+                        if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
+                            Action(fighter.NeutralGetUp, true);
+                        }
+                        else{
+                            Action(fighter.KnockedDown, true);
+                        }
+                    }
+                    else{
+                        Action(fighter.KnockedDown, true);
+                    }
+                }
             }
 
             if(fighterActionState == FighterActionState.Hit){         // deal with hitstun and related things
@@ -222,6 +245,15 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if(knockedDownOnGround && fighterActionState == FighterActionState.Knockdown){
+                if(knockdownTimer + 4 < Time.time){
+                    Action(fighter.NeutralGetUp,true);
+                }
+                else{
+                    Debug.Log(knockdownTimer + 4 + " vs " + Time.time);
+                }
+            }
+
         }
     }
 
@@ -231,19 +263,36 @@ public class Player : MonoBehaviour
             Debug.Log("Got hit!");
             HP -= damage;
             if(!superArmored){
-                incomingKnockback = true;
-                incomingXvel = xKnockback;
-                incomingYvel = yKnockback;
+                if(willTrip && fighterState == FighterState.Standing || willTrip && fighterState == FighterState.Crouching){
+                    // incomingKnockback = true;
+                    // incomingXvel = xKnockback;
+                    // incomingYvel = yKnockback;
 
-                float t = Time.time;
-                freezeTime = freeze;
-                freezeTimer = t;
-                stunTime = stun;
-                stunTimer = t;
+                    // float t = Time.time;
+                    // freezeTime = freeze;
+                    // freezeTimer = t;
+                    // stunTime = stun;
+                    // stunTimer = t;
 
-                comboed += 1;
+                    comboed += 1;
 
-                fighterActionState = FighterActionState.Hit;
+                    fighterActionState = FighterActionState.Knockdown;
+                }
+                else{
+                    incomingKnockback = true;
+                    incomingXvel = xKnockback;
+                    incomingYvel = yKnockback;
+
+                    float t = Time.time;
+                    freezeTime = freeze;
+                    freezeTimer = t;
+                    stunTime = stun;
+                    stunTimer = t;
+
+                    comboed += 1;
+
+                    fighterActionState = FighterActionState.Hit;
+                }
             }
         }
 

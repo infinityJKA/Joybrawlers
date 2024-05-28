@@ -32,9 +32,12 @@ MonoBehaviour:
   AirJump: {fileID: 0}
   GroundHit: {fileID: 11400000, guid: b61ca0db35722a840b4533ca1bc75520, type: 2}
   AirHit: {fileID: 11400000, guid: 690805a42d5032f40a93cd3a8ec1b365, type: 2}
-  KnockedDown: {fileID: 0}
+  KnockedDown: {fileID: 11400000, guid: 1c9d14b5620b3b54680f8e89e469634d, type: 2}
   LaunchUp: {fileID: 0}
   LaunchDown: {fileID: 0}
+  NeutralGetUp: {fileID: 11400000, guid: 3069ce1e789b8034cb24281c064af93a, type: 2}
+  GetUpAttack: {fileID: 0}
+  GetUpRoll: {fileID: 0}
   GroundShield: {fileID: 0}
   CrouchShield: {fileID: 0}
   AirShield: {fileID: 0}

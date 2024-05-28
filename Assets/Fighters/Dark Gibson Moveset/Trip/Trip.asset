@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b6366358384034f8d5cb13a3560fcb, type: 3}
-  m_Name: 5y
+  m_Name: Trip
   m_EditorClassIdentifier: 
-  moveName: 5y
-  boxData: {fileID: 6446637328618264802, guid: 9eec3b3a7cf5b0446959130cbfc505af, type: 3}
-  actionStateDuringAction: 4
-  CancelInto:
-  - {fileID: 11400000, guid: f063e6e69157bf54ab11f3e0dd25881f, type: 2}
-  - {fileID: 11400000, guid: 7a40260f66f722a4c918e83c67969e90, type: 2}
+  moveName: Trip
+  boxData: {fileID: 1571764349782106440, guid: 2cb31bcccb93cd741b7686f151cdfd77, type: 3}
+  actionStateDuringAction: 3
+  CancelInto: []
