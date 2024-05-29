@@ -80,6 +80,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 8181971673426349133, guid: 46cd72c76518e0c419930657acf7879a, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: -8633287790082478735, guid: 46cd72c76518e0c419930657acf7879a, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &5463453609333178380
@@ -203,12 +207,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxType: 1
-  damage: 80
-  chipDamage: 0
+  damage: 60
+  chipDamage: 10
   hitstun: 0.3
   freeze: 0.07
   xKnockback: 0.35
   yKnockback: 0
+  xShieldKnockback: 0.2
+  yShieldKnockback: 0
   trip: 0
   knockdown: 0
   attackType: 0
@@ -393,6 +399,8 @@ MonoBehaviour:
   freeze: 0
   xKnockback: 0
   yKnockback: 0
+  xShieldKnockback: 0
+  yShieldKnockback: 0
   trip: 0
   knockdown: 0
   attackType: 0
@@ -577,6 +585,8 @@ MonoBehaviour:
   freeze: 0
   xKnockback: 0
   yKnockback: 0
+  xShieldKnockback: 0
+  yShieldKnockback: 0
   trip: 0
   knockdown: 0
   attackType: 0

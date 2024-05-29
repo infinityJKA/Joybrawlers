@@ -33,9 +33,16 @@ public class Player : MonoBehaviour
     public float lastHitTime;
     public Action currentAction;
     public bool moveHasHit;
+    Player otherPlayer;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
+        if(playerNumber == 1){
+            otherPlayer = playersManager.player2;
+        }
+        else{
+            otherPlayer = playersManager.player1;
+        }
     }
 
     public void PlayerUpdate(){
@@ -84,6 +91,17 @@ public class Player : MonoBehaviour
             if(fighterActionState != FighterActionState.Knockdown){
                 knockedDownOnGround = false;
             }
+
+            if(fighterActionState == FighterActionState.Shield){
+                if(otherPlayer.fighterActionState != FighterActionState.Attacking){
+                    fighterActionState = FighterActionState.Neutral;
+                }
+                else if(inputs[inputs.Count-1] != "7" && inputs[inputs.Count-1] != "4" && inputs[inputs.Count-1] != "1"){
+                    fighterActionState = FighterActionState.Neutral;
+                }
+
+            }
+
             
             // if(fighterActionState != FighterActionState.Attacking || moveHasHit){
             if(Input.GetButtonDown("p" + playerNumber + " x")){
@@ -153,7 +171,7 @@ public class Player : MonoBehaviour
             }
 
             
-            if(fighterActionState == FighterActionState.Neutral){
+            if(fighterActionState == FighterActionState.Neutral){  // CHECKS CROUCH/STANDING AND JUMP START
                 if(fighterObject.transform.position.y > 0){
                     fighterState = FighterState.InAir;
                 }
@@ -168,6 +186,24 @@ public class Player : MonoBehaviour
                         
                         if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
                             Action(fighter.Jump, true);
+                        }
+                    }
+                }
+            }
+
+            if(otherPlayer.fighterActionState == FighterActionState.Attacking){ // CODE TO ACTIVATE SHIELDING
+                if(fighterActionState == FighterActionState.Neutral || fighterActionState == FighterActionState.Cancellable || fighterActionState == FighterActionState.Shield){
+                    if(inputs.Count > 0){
+                        if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "4" || inputs[inputs.Count-1] == "1"){
+                            if(fighterState == FighterState.Crouching){
+                                Action(fighter.CrouchShield, true);
+                            }
+                            else if(fighterState == FighterState.InAir){
+                                Action(fighter.AirShield, true);
+                            }               
+                            else{
+                                Action(fighter.GroundShield, true);
+                            }
                         }
                     }
                 }
@@ -257,43 +293,58 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GetHit(int damage, float freeze, float stun, float xKnockback, float yKnockback, bool willTrip, bool willKnockdown, bool superArmored){
+    public void GetHit(int damage, float freeze, float stun, float xKnockback, float yKnockback, bool willTrip, bool willKnockdown, bool superArmored, AttackType attackType, int chipDamage, float xShieldKnockback, float yShieldKnockback){
         if(lastHitTime != Time.time){ // prevents overlapping hurtboxes getting hit multiple times at once
             lastHitTime = Time.time;
-            Debug.Log("Got hit!");
-            HP -= damage;
-            if(!superArmored){
-                if(willTrip && fighterState == FighterState.Standing || willTrip && fighterState == FighterState.Crouching){
-                    // incomingKnockback = true;
-                    // incomingXvel = xKnockback;
-                    // incomingYvel = yKnockback;
 
-                    // float t = Time.time;
-                    // freezeTime = freeze;
-                    // freezeTimer = t;
-                    // stunTime = stun;
-                    // stunTimer = t;
-
-                    comboed += 1;
-
-                    fighterActionState = FighterActionState.Knockdown;
+            bool shieldedSuccessfully = false;                       // CHECK FOR SHIELD HERE
+            if(fighterActionState == FighterActionState.Shield){
+                if(attackType == AttackType.Neutral){
+                    shieldedSuccessfully = true;
                 }
-                else{
-                    incomingKnockback = true;
-                    incomingXvel = xKnockback;
-                    incomingYvel = yKnockback;
-
-                    float t = Time.time;
-                    freezeTime = freeze;
-                    freezeTimer = t;
-                    stunTime = stun;
-                    stunTimer = t;
-
-                    comboed += 1;
-
-                    fighterActionState = FighterActionState.Hit;
+                else if(attackType == AttackType.Overhead){
+                    if(fighterState == FighterState.Standing || fighterState == FighterState.InAir){
+                        shieldedSuccessfully = true;
+                    }
+                }
+                else if(attackType == AttackType.Low && fighterState == FighterState.Crouching){
+                    shieldedSuccessfully = true;
                 }
             }
+
+            if(shieldedSuccessfully){
+                Debug.Log("Shielded!");
+                HP -= chipDamage;
+                AddVelocity(xShieldKnockback*-1,yShieldKnockback);
+            }
+            else{
+                Debug.Log("Got hit!");
+                HP -= damage;
+                if(!superArmored){
+                    if(willTrip && fighterState == FighterState.Standing || willTrip && fighterState == FighterState.Crouching){
+                        comboed += 1;
+
+                        fighterActionState = FighterActionState.Knockdown;
+                    }
+                    else{
+                        incomingKnockback = true;
+                        incomingXvel = xKnockback;
+                        incomingYvel = yKnockback;
+
+                        float t = Time.time;
+                        freezeTime = freeze;
+                        freezeTimer = t;
+                        stunTime = stun;
+                        stunTimer = t;
+
+                        comboed += 1;
+
+                        fighterActionState = FighterActionState.Hit;
+                    }
+                }
+            }
+
+
         }
 
     }
@@ -328,6 +379,9 @@ public class Player : MonoBehaviour
         
             fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
         
+            if(fighterState != FighterState.InAir && yVel > 0){
+                fighterState = FighterState.InAir;
+            }
             
 
             float n = 0.915f;
@@ -343,6 +397,10 @@ public class Player : MonoBehaviour
     void Action(Action action, bool continous){
         if(actionTimeline.currentActionName == action.name){  // stop if the action is already in action
             return;
+        }
+
+        if(action.actionStateDuringAction == FighterActionState.Shield){
+            SetVelocityX(0);
         }
 
         // set action state

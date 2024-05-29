@@ -112,6 +112,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -5541002789683151168, guid: de4b772208dd12447a66a83064b4ae83, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 5092949126825793750, guid: de4b772208dd12447a66a83064b4ae83, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &6528250273587740441
@@ -268,12 +270,20 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: chipDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: superArmor
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: xKnockback
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: xShieldKnockback
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: superArmorEndurance
@@ -458,12 +468,20 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: chipDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: superArmor
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: xKnockback
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: xShieldKnockback
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: superArmorEndurance
@@ -557,6 +575,10 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: chipDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: superArmor
       value: 1
       objectReference: {fileID: 0}
@@ -567,6 +589,10 @@ PrefabInstance:
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: yKnockback
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: xShieldKnockback
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: superArmorEndurance

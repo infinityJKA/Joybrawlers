@@ -38,9 +38,9 @@ MonoBehaviour:
   NeutralGetUp: {fileID: 11400000, guid: 3069ce1e789b8034cb24281c064af93a, type: 2}
   GetUpAttack: {fileID: 0}
   GetUpRoll: {fileID: 0}
-  GroundShield: {fileID: 0}
-  CrouchShield: {fileID: 0}
-  AirShield: {fileID: 0}
+  GroundShield: {fileID: 11400000, guid: 9ae07776ea64ce84b8f213aa036085a7, type: 2}
+  CrouchShield: {fileID: 11400000, guid: 383f1bc9057c43c4394016aee1f68f59, type: 2}
+  AirShield: {fileID: 11400000, guid: 510f65261dcc3ea46bf23ce705af5fed, type: 2}
   Victory: {fileID: 0}
   Lose: {fileID: 0}
   inputActions:

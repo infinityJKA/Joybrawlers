@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b6366358384034f8d5cb13a3560fcb, type: 3}
+  m_Name: Air Shield
+  m_EditorClassIdentifier: 
+  moveName: Air Shield
+  boxData: {fileID: 8188179670442359248, guid: 754153d22d9b2ab47b9c4cfc83d6c747, type: 3}
+  actionStateDuringAction: 8
+  CancelInto: []

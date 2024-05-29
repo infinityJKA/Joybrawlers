@@ -4,5 +4,5 @@ public enum FighterState{
 }
 
 public enum FighterActionState{
-    Neutral,Cancellable,Hit,Knockdown,Attacking,NonattackAction,Victory,Lose
+    Neutral,Cancellable,Hit,Knockdown,Attacking,NonattackAction,Victory,Lose,Shield
 }

@@ -39,75 +39,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Armature|1y' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'head' has translation animation that will
-      be discarded.\n\t'lowerarm.L' has translation animation that will be discarded.\n\t'lowerarm.R'
-      has translation animation that will be discarded.\n\t'hand.R' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|236x' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.R'
-      has translation animation that will be discarded.\n\t'upperarm.R' has scale
-      animation that will be discarded.\n\t'hand.R' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'hand.R' has scale animation
-      that will be discarded.\n\nClip 'Armature|236y' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'lowerarm.R' has translation animation that
-      will be discarded.\n\t'upperarm.R' has scale animation that will be discarded.\n\t'hand.R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'hand.R'
-      has scale animation that will be discarded.\n\nClip 'Armature|2x' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
-      animation that will be discarded.\n\nClip 'Armature|5x' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
-      animation that will be discarded.\n\t'hand.L' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'lowerarm.R' has translation
-      animation that will be discarded.\n\nClip 'Armature|5y' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
-      animation that will be discarded.\n\t'lowerarm.R' has translation animation
-      that will be discarded.\n\t'hand.R' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\nClip 'Armature|air x' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'thigh.L' has translation
-      animation that will be discarded.\n\nClip 'Armature|crouch' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'lowerarm.R' has translation
-      animation that will be discarded.\n\nClip 'Armature|crouch to stand' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
-      animation that will be discarded.\n\t'lowerarm.R' has translation animation
-      that will be discarded.\n\nClip 'Armature|idle' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'lowerarm.L' has translation animation that
-      will be discarded.\n\t'lowerarm.R' has translation animation that will be discarded.\n\nClip
-      'Armature|stand to crouch' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.L'
-      has translation animation that will be discarded.\n\t'lowerarm.R' has translation
-      animation that will be discarded.\n\nClip 'Armature|Taunt' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'lowerarm.L' has translation
-      animation that will be discarded.\n\t'hand.L' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'lowerarm.R' has translation
-      animation that will be discarded.\n\t'hand.R' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\nClip 'Armature|Victory'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.R'
-      has translation animation that will be discarded.\n\t'hand.R' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|Walk' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.L'
-      has translation animation that will be discarded.\n\t'hand.L' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'lowerarm.R'
-      has translation animation that will be discarded.\n\t'hand.R' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|Walk Backwards' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'lowerarm.L'
-      has translation animation that will be discarded.\n\t'hand.L' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'lowerarm.R'
-      has translation animation that will be discarded.\n\t'hand.R' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -851,6 +783,93 @@ ModelImporter:
       internalID: -8403568964845015304
       firstFrame: 0
       lastFrame: 6
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Crouch Shield
+      takeName: Armature|Crouch Shield
+      internalID: 611479090091658414
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Shield
+      takeName: Armature|Shield
+      internalID: 3407729263071828170
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Air Shield
+      takeName: Armature|Air Shield
+      internalID: -6992478856392969778
+      firstFrame: 0
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

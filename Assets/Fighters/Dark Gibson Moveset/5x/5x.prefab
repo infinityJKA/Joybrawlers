@@ -94,6 +94,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 1335291273269685271, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: -8710574301167754305, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 22accb7b94d551a4a9231537e9851aaf: {fileID: 982059130283819732}
@@ -224,6 +228,8 @@ MonoBehaviour:
   freeze: 0
   xKnockback: 0
   yKnockback: 0
+  xShieldKnockback: 0
+  yShieldKnockback: 0
   trip: 0
   knockdown: 0
   attackType: 0
@@ -408,6 +414,8 @@ MonoBehaviour:
   freeze: 0
   xKnockback: 0
   yKnockback: 0
+  xShieldKnockback: 0
+  yShieldKnockback: 0
   trip: 0
   knockdown: 0
   attackType: 0
@@ -473,6 +481,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2850248339918830088}
     m_Modifications:
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: chipDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: xShieldKnockback
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2467232518895987416, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.079

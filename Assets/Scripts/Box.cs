@@ -7,7 +7,7 @@ public class Box : MonoBehaviour
 {
     public BoxType boxType = BoxType.Hurtbox;
     public int damage = 0,chipDamage = 0;
-    public float hitstun,freeze,xKnockback,yKnockback;
+    public float hitstun,freeze,xKnockback,yKnockback,xShieldKnockback,yShieldKnockback;
     public bool trip = false,knockdown = false;
     public AttackType attackType;
     public int playerNumber;
@@ -30,21 +30,21 @@ public class Box : MonoBehaviour
         if(c.gameObject.GetComponent<Box>() == true){
             Box otherBox = c.gameObject.GetComponent<Box>(); 
             if(otherBox.playerNumber != playerNumber){
-                if(boxType == BoxType.Hitbox & otherBox.boxType == BoxType.Hurtbox){
+                if(boxType == BoxType.Hitbox & otherBox.boxType == BoxType.Hurtbox){   // CODE FOR GETTING HIT
                     // Debug.Log("GET HIT LMAO");
                     bool armoredThrough = false;
                     if(otherBox.superArmor & otherBox.superArmorEndurance > damage){
                         armoredThrough = true;
                     }
                     if(playerNumber == 1){
-                        players.player2.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough);
+                        players.player2.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback);
                         players.player1.moveHasHit = true;
                         if(actionableOnHit){
                             players.player1.fighterActionState = FighterActionState.Cancellable;
                         }
                     }
                     else{
-                        players.player1.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough);
+                        players.player1.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback);
                         players.player2.moveHasHit = true;
                         if(actionableOnHit){
                             players.player1.fighterActionState = FighterActionState.Cancellable;

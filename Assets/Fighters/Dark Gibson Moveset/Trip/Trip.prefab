@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2439150617732362243}
-  - component: {fileID: 4091100503443775445}
   - component: {fileID: 1571764349782106440}
+  - component: {fileID: 7262053130296269913}
   m_Layer: 0
   m_Name: Trip
   m_TagString: Untagged
@@ -33,29 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!320 &4091100503443775445
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3313482029992049882}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: f14f065bae6433c458691b72581b0fa7, type: 2}
-  m_InitialState: 0
-  m_WrapMode: 1
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -4903509085561143369, guid: f14f065bae6433c458691b72581b0fa7, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 0}
-    value: {fileID: 0}
-  - key: {fileID: 8913390022848953034, guid: f14f065bae6433c458691b72581b0fa7, type: 2}
-    value: {fileID: 0}
-  m_ExposedReferences:
-    m_References: []
 --- !u!114 &1571764349782106440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +45,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4a7dc76a0686644af3f036ee381b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameData: {fileID: 4091100503443775445}
+  frameData: {fileID: 7262053130296269913}
   modelAnim: {fileID: 126244504792070990, guid: ba799696c2e42a44588d8d897870c5ed, type: 3}
   PlayerNumber: 0
+--- !u!320 &7262053130296269913
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3313482029992049882}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: f14f065bae6433c458691b72581b0fa7, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -4903509085561143369, guid: f14f065bae6433c458691b72581b0fa7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3501951082506252621, guid: f14f065bae6433c458691b72581b0fa7, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
