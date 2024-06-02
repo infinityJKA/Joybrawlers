@@ -1,8 +1,8 @@
 
 public enum FighterState{
-    Standing,Crouching,InAir,
+    Standing,Crouching,InAir
 }
 
 public enum FighterActionState{
-    Neutral,Cancellable,Hit,Knockdown,Attacking,NonattackAction,Victory,Lose,Shield
+    Neutral,Cancellable,Hit,Knockdown,Attacking,NonattackAction,Victory,Lose,Shield,Grabbing,Grabbed
 }

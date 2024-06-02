@@ -32,6 +32,7 @@ MonoBehaviour:
   AirJump: {fileID: 0}
   GroundHit: {fileID: 11400000, guid: b61ca0db35722a840b4533ca1bc75520, type: 2}
   AirHit: {fileID: 11400000, guid: 690805a42d5032f40a93cd3a8ec1b365, type: 2}
+  Grabbed: {fileID: 11400000, guid: 7ffa672d2f6dca743b418570429b2771, type: 2}
   KnockedDown: {fileID: 11400000, guid: 1c9d14b5620b3b54680f8e89e469634d, type: 2}
   LaunchUp: {fileID: 0}
   LaunchDown: {fileID: 0}
@@ -62,6 +63,13 @@ MonoBehaviour:
     validActionState: 0
     meter: 0
     action: {fileID: 11400000, guid: 7a40260f66f722a4c918e83c67969e90, type: 2}
+  - requiredInputs:
+    - 4
+    - y
+    validFighterState: 0
+    validActionState: 0
+    meter: 0
+    action: {fileID: 11400000, guid: 48907c3dc3f29dc48b8926a84b0e8b42, type: 2}
   - requiredInputs:
     - x
     validFighterState: 0

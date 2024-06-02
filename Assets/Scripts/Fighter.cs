@@ -20,7 +20,7 @@ public class Fighter : ScriptableObject
     public Action Idle,Crouching,AirIdle,
     WalkForwards,WalkBackwards,
     Jump,AirJump,
-    GroundHit,AirHit,
+    GroundHit,AirHit,Grabbed,
     KnockedDown,LaunchUp,LaunchDown,
     NeutralGetUp,GetUpAttack,GetUpRoll,
     GroundShield,CrouchShield,AirShield,

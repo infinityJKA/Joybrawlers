@@ -16,6 +16,8 @@ public class Box : MonoBehaviour
     public bool superArmor = false;
     public int superArmorEndurance;
     public Players players;
+    public bool grab;
+    public Action grabAction;
 
 
     void Start(){
@@ -37,10 +39,16 @@ public class Box : MonoBehaviour
                         armoredThrough = true;
                     }
                     if(playerNumber == 1){
-                        players.player2.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback);
-                        players.player1.moveHasHit = true;
-                        if(actionableOnHit){
-                            players.player1.fighterActionState = FighterActionState.Cancellable;
+                        if(grab){
+                            players.player1.Action(grabAction);
+                            players.player2.fighterActionState = FighterActionState.Grabbed;
+                        }
+                        else{
+                            players.player2.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback);
+                            players.player1.moveHasHit = true;
+                            if(actionableOnHit){
+                                players.player1.fighterActionState = FighterActionState.Cancellable;
+                            }
                         }
                     }
                     else{
@@ -118,5 +126,5 @@ public class Box : MonoBehaviour
 
 }
 
-public enum BoxType{Hurtbox,Hitbox}
+public enum BoxType{Hurtbox,Hitbox,GrabTracker}
 public enum AttackType{Neutral,Overhead,Low,Unshieldable}

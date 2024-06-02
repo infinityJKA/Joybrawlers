@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public Action currentAction;
     public bool moveHasHit;
     Player otherPlayer;
+    public GameObject grabTracker;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -88,6 +89,29 @@ public class Player : MonoBehaviour
             CheckDirectionDown();
             CheckDirectionRelease();
 
+            if(fighterActionState == FighterActionState.Grabbed){           // GETTING GRABBED LOGIC
+                if(otherPlayer.fighterActionState == FighterActionState.Grabbing){
+                    if(grabTracker == null){
+                        grabTracker = GameObject.Find("GrabTracker");
+                    }
+                    fighterObject.transform.position = grabTracker.transform.position;
+                    fighterObject.transform.rotation = grabTracker.transform.rotation;
+                    Action(fighter.Grabbed);
+                    return;
+                }
+                fighterObject.transform.rotation = new Quaternion(0,180,0,0); // reset rotation after grab finishes
+                if(fighterObject.transform.position.y < 0){
+                    fighterObject.transform.position = new Vector3(fighterObject.transform.position.x, 0,0);
+                    fighterState = FighterState.Standing;
+                }
+                else{
+                    fighterObject.transform.position = new Vector3(fighterObject.transform.position.x, fighterObject.transform.position.y,0);
+                    fighterState = FighterState.InAir;
+                }
+                Box grabHit = grabTracker.GetComponent<Box>();
+                GetHit(grabHit.damage,grabHit.freeze,grabHit.hitstun,grabHit.xKnockback,grabHit.yKnockback,grabHit.trip,grabHit.knockdown,false,grabHit.attackType,grabHit.chipDamage,grabHit.xShieldKnockback,grabHit.yShieldKnockback);
+            }
+
             if(fighterActionState != FighterActionState.Knockdown){
                 knockedDownOnGround = false;
             }
@@ -117,7 +141,7 @@ public class Player : MonoBehaviour
                 knockedDownOnGround = true;
             }
 
-            if(fighterActionState == FighterActionState.Attacking || fighterActionState == FighterActionState.Cancellable || fighterActionState == FighterActionState.NonattackAction){
+            if(fighterActionState == FighterActionState.Attacking || fighterActionState == FighterActionState.Cancellable || fighterActionState == FighterActionState.NonattackAction || fighterActionState == FighterActionState.Grabbing){
                 if(fighterObject.GetComponentInChildren<PlayableDirector>().state != PlayState.Playing){
                     fighterActionState = FighterActionState.Neutral;
                 }
@@ -141,7 +165,7 @@ public class Player : MonoBehaviour
                                     }
                                     if(validInput){
                                         if(inputAction.validActionState == FighterActionState.Attacking || fighterActionState != FighterActionState.Attacking && fighterActionState != FighterActionState.Attacking){
-                                            Action(inputAction.action,true);
+                                            Action(inputAction.action);
                                             acted = true;
                                             ResetInputLists();
                                         }
@@ -155,7 +179,7 @@ public class Player : MonoBehaviour
                                                 }
                                                 if(validInput){
                                                     Debug.Log("CANCELLED!");
-                                                    Action(inputAction.action,true);
+                                                    Action(inputAction.action);
                                                 acted = true;
                                                 ResetInputLists();
                                                 }
@@ -185,7 +209,7 @@ public class Player : MonoBehaviour
                         }
                         
                         if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
-                            Action(fighter.Jump, true);
+                            Action(fighter.Jump);
                         }
                     }
                 }
@@ -196,13 +220,13 @@ public class Player : MonoBehaviour
                     if(inputs.Count > 0){
                         if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "4" || inputs[inputs.Count-1] == "1"){
                             if(fighterState == FighterState.Crouching){
-                                Action(fighter.CrouchShield, true);
+                                Action(fighter.CrouchShield);
                             }
                             else if(fighterState == FighterState.InAir){
-                                Action(fighter.AirShield, true);
+                                Action(fighter.AirShield);
                             }               
                             else{
-                                Action(fighter.GroundShield, true);
+                                Action(fighter.GroundShield);
                             }
                         }
                     }
@@ -214,19 +238,19 @@ public class Player : MonoBehaviour
                     if(fighterState == FighterState.Standing){
                         if(inputs.Count > 0){
                             if(inputs[inputs.Count-1] == "6"){         //  WALKING
-                                Action(fighter.WalkForwards, true);
+                                Action(fighter.WalkForwards);
                                 if(xVel < fighter.walkSpeed){
                                     SetVelocityX(fighter.walkSpeed);
                                 }
                             }
                             else if(inputs[inputs.Count-1] == "4"){    // WALKING BACKWARDS
-                                Action(fighter.WalkBackwards, true);
+                                Action(fighter.WalkBackwards);
                                 if(xVel > fighter.walkBackSpeed){
                                     SetVelocityX(fighter.walkBackSpeed);
                                 }
                             }
                             else{
-                                Action(fighter.Idle, true);           //  IDLE
+                                Action(fighter.Idle);           //  IDLE
                                 if(inputs.Count >= 2){
                                     if(inputs[inputs.Count-2] == "4" || inputs[inputs.Count-2] == "6"){
                                         SetVelocityX(0);
@@ -235,27 +259,27 @@ public class Player : MonoBehaviour
                             }
                         }
                         else{
-                            Action(fighter.Idle, true);   //  ALT IDLE CONDITION
+                            Action(fighter.Idle);   //  ALT IDLE CONDITION
                         }
                     }
                     else if(fighterState == FighterState.Crouching){
-                        Action(fighter.Crouching, true);
+                        Action(fighter.Crouching);
                     }
                     else if(fighterState == FighterState.InAir){
-                        Action(fighter.AirIdle, true);
+                        Action(fighter.AirIdle);
                     }
                 }
                 else if(fighterActionState == FighterActionState.Knockdown){
                     if(inputs.Count > 0 && knockdownTimer + 1 < Time.time && fighterState != FighterState.InAir){
                         if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
-                            Action(fighter.NeutralGetUp, true);
+                            Action(fighter.NeutralGetUp);
                         }
                         else{
-                            Action(fighter.KnockedDown, true);
+                            Action(fighter.KnockedDown);
                         }
                     }
                     else{
-                        Action(fighter.KnockedDown, true);
+                        Action(fighter.KnockedDown);
                     }
                 }
             }
@@ -274,20 +298,20 @@ public class Player : MonoBehaviour
                     fighterActionState = FighterActionState.Neutral;
                 }
                 else if(fighterState == FighterState.Standing || fighterState == FighterState.Crouching){
-                    Action(fighter.GroundHit,true);
+                    Action(fighter.GroundHit);
                 }
                 else{
-                    Action(fighter.AirHit,true);
+                    Action(fighter.AirHit);
                 }
             }
 
             if(knockedDownOnGround && fighterActionState == FighterActionState.Knockdown){
                 if(knockdownTimer + 4 < Time.time){
-                    Action(fighter.NeutralGetUp,true);
+                    Action(fighter.NeutralGetUp);
                 }
-                else{
-                    Debug.Log(knockdownTimer + 4 + " vs " + Time.time);
-                }
+                // else{
+                //     Debug.Log(knockdownTimer + 4 + " vs " + Time.time);
+                // }
             }
 
         }
@@ -365,7 +389,7 @@ public class Player : MonoBehaviour
     }
 
     public void PlayerPhysics(){
-        if(!incomingKnockback){ // pauses during freeze
+        if(!incomingKnockback && fighterActionState != FighterActionState.Grabbed){ // pauses during freeze
             
             if(fighterObject.transform.position[1]+yVel < 0 && fighterObject.transform.position.y + yVel < fighterObject.transform.position.y){
                 Debug.Log("YOU LANDED");
@@ -394,7 +418,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Action(Action action, bool continous){
+    public void Action(Action action){
         if(actionTimeline.currentActionName == action.name){  // stop if the action is already in action
             return;
         }

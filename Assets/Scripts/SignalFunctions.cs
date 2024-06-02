@@ -50,4 +50,18 @@ public class SignalFunctions : MonoBehaviour
             p.AddVelocity(0,p.fighter.jumpHeight);
         }
     }
+
+    public void GrabRelease(){
+        Debug.Log("Grab Release!");
+        Player p;
+        if(GetComponent<BoxData>().PlayerNumber == 1){
+            p = GameObject.Find("P1").GetComponent<Player>();
+        }
+        else{
+            p = GameObject.Find("P2").GetComponent<Player>();
+        }
+        p.fighterActionState = FighterActionState.Attacking;
+        p.moveHasHit = true;
+    }
+
 }
