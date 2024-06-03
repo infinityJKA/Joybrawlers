@@ -7,5 +7,5 @@ using UnityEngine.UI;
 public class PlayerBattleUI : MonoBehaviour
 {
     public TMP_Text FighterName,SuperNumber;
-    public Image HPGreen,HPRed,SuperBlue;
+    public Image HPGreen,HPRed,SuperBlue,portrait;
 }

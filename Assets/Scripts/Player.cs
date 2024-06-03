@@ -472,6 +472,7 @@ public class Player : MonoBehaviour
 
         playerUI = pUI;
         playerUI.FighterName.text = fighter.fighterName;
+        playerUI.portrait.sprite = fighter.battlePortrait;
 
         MaxHP = fighter.maxHP;
         HP = MaxHP;

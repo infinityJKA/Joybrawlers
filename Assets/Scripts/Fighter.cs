@@ -12,8 +12,7 @@ public class Fighter : ScriptableObject
     public int airJumps;
     public float airJumpHeight;
     public float walkSpeed,walkBackSpeed;
-    public Sprite smallSelectIcon;
-    public Sprite bigSelectIcon;
+    public Sprite battlePortrait;
     public GameObject model;
     public RuntimeAnimatorController animator;
 
