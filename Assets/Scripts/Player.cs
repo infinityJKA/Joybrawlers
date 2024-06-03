@@ -48,21 +48,11 @@ public class Player : MonoBehaviour
 
     public void PlayerUpdate(){
 
-        if(playerNumber == 1){
-            if(playersManager.player2.fighterObject.transform.position.x > fighterObject.transform.position.x){
-                facingInvert = false;
-            }
-            else{
-                facingInvert = true;
-            }
+        if(otherPlayer.fighterObject.transform.position.x > fighterObject.transform.position.x){
+            facingInvert = false;
         }
-        else if(playerNumber == 2){
-            if(playersManager.player1.fighterObject.transform.position.x > fighterObject.transform.position.x){
-                facingInvert = false;
-            }
-            else{
-                facingInvert = true;
-            }
+        else{
+            facingInvert = true;
         }
 
         if(fighterActionState == FighterActionState.Neutral){      // CHANGE FACING
@@ -437,7 +427,8 @@ public class Player : MonoBehaviour
 
         BoxData boxData = Instantiate(action.boxData,actionTimeline.transform.position,actionTimeline.transform.rotation);
         if(facingInvert){
-            boxData.transform.Rotate(0,180,0);
+            // boxData.transform.Rotate(0,180,0);
+            boxData.transform.localScale = new Vector3(-1,1,1);
         }
 
         boxData.transform.parent = actionTimeline.transform;
