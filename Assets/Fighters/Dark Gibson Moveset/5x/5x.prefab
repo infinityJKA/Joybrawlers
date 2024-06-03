@@ -98,6 +98,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -8710574301167754305, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -5372384545213658423, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 22accb7b94d551a4a9231537e9851aaf: {fileID: 982059130283819732}
@@ -239,6 +241,8 @@ MonoBehaviour:
   superArmor: 0
   superArmorEndurance: 0
   players: {fileID: 0}
+  grab: 0
+  grabAction: {fileID: 0}
 --- !u!95 &4462028382591525276
 Animator:
   serializedVersion: 5
@@ -425,6 +429,8 @@ MonoBehaviour:
   superArmor: 0
   superArmorEndurance: 0
   players: {fileID: 0}
+  grab: 0
+  grabAction: {fileID: 0}
 --- !u!95 &5144681821541630996
 Animator:
   serializedVersion: 5

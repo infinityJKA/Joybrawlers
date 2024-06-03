@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b6366358384034f8d5cb13a3560fcb, type: 3}
-  m_Name: 5x
+  m_Name: 2x
   m_EditorClassIdentifier: 
-  moveName: 5x
-  boxData: {fileID: 4848377656331525961, guid: 8e603b5133cba084e8c49663959c15ab, type: 3}
+  moveName: 2x
+  boxData: {fileID: 5120924914374095769, guid: 3e6f3f42a8c424d41a7e3eacb3e0f3e2, type: 3}
   actionStateDuringAction: 4
   CancelInto:
-  - {fileID: 11400000, guid: 8be37283603d38b47a887c660f803045, type: 2}
   - {fileID: 11400000, guid: f063e6e69157bf54ab11f3e0dd25881f, type: 2}
   - {fileID: 11400000, guid: 7a40260f66f722a4c918e83c67969e90, type: 2}
-  - {fileID: 11400000, guid: be0b2cb5fb062484c973a98d5a918ef2, type: 2}
+  - {fileID: 11400000, guid: 48907c3dc3f29dc48b8926a84b0e8b42, type: 2}
+  - {fileID: 11400000, guid: 8be37283603d38b47a887c660f803045, type: 2}

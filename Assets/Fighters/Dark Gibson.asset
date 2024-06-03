@@ -71,6 +71,12 @@ MonoBehaviour:
     action: {fileID: 11400000, guid: 48907c3dc3f29dc48b8926a84b0e8b42, type: 2}
   - requiredInputs:
     - x
+    validFighterState: 1
+    validActionState: 0
+    meter: 0
+    action: {fileID: 11400000, guid: be0b2cb5fb062484c973a98d5a918ef2, type: 2}
+  - requiredInputs:
+    - x
     validFighterState: 0
     validActionState: 0
     meter: 0
