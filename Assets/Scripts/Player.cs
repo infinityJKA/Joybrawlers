@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Playables;
 using System.Data.Common;
+using TMPro;
 
 
 public class Player : MonoBehaviour
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     public bool moveHasHit;
     Player otherPlayer;
     public GameObject grabTracker;
+    public PlayerBattleUI playerUI;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour
             facingInvert = true;
         }
 
-        if(fighterActionState == FighterActionState.Neutral){      // CHANGE FACING
+        if(fighterActionState == FighterActionState.Neutral || fighterActionState == FighterActionState.Knockdown){      // CHANGE FACING
             if(facingInvert){
                 // fighterObject.transform.rotation = Quaternion.Euler(0,0,0);
                 fighterObject.transform.localScale = new Vector3(-1,1,1);
@@ -64,6 +66,18 @@ public class Player : MonoBehaviour
                 // fighterObject.transform.rotation = Quaternion.Euler(0,180,0);
                 fighterObject.transform.localScale = new Vector3(1,1,1);
             }
+        }
+
+        if(comboed > 0){
+            if(fighterActionState == FighterActionState.Neutral || fighterActionState == FighterActionState.Attacking || fighterActionState == FighterActionState.NonattackAction){
+                comboed = 0;
+            }
+        }
+
+        // Debug.Log(HP/MaxHP);
+        playerUI.HPGreen.fillAmount = (float)HP/MaxHP;
+        if(comboed == 0){
+            playerUI.HPRed.fillAmount = (float)HP/MaxHP;
         }
 
 
@@ -446,7 +460,7 @@ public class Player : MonoBehaviour
         inputTime.Clear();
     }
 
-    public void InitializeBattleStart(Vector3 pos, Quaternion rot){
+    public void InitializeBattleStart(Vector3 pos, Quaternion rot, PlayerBattleUI pUI){
         fighterObject = fighter.model;
         fighterObject = Instantiate(fighterObject,pos, rot);  // THE CODE WILL SELF DESTRUCT AND INFINITELY SPAWN INCOMPLETE PLAYERS IF OBJECT IS NOT DEFINIED HERE, DO NOT CHANGE!!!
         // fighterObject.AddComponent<Animator>();
@@ -455,6 +469,9 @@ public class Player : MonoBehaviour
 
         actionTimeline = Instantiate(timelineHandlerPrefab,fighterObject.transform.position,fighterObject.transform.rotation);  // THE CODE WILL SELF DESTRUCT AND INFINITELY SPAWN INCOMPLETE PLAYERS IF OBJECT IS NOT DEFINIED HERE, DO NOT CHANGE!!!
         actionTimeline.transform.parent = fighterObject.transform;
+
+        playerUI = pUI;
+        playerUI.FighterName.text = fighter.fighterName;
 
         MaxHP = fighter.maxHP;
         HP = MaxHP;

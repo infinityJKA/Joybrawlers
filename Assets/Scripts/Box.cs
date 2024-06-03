@@ -52,10 +52,16 @@ public class Box : MonoBehaviour
                         }
                     }
                     else{
-                        players.player1.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback);
-                        players.player2.moveHasHit = true;
-                        if(actionableOnHit){
-                            players.player1.fighterActionState = FighterActionState.Cancellable;
+                        if(grab){
+                            players.player2.Action(grabAction);
+                            players.player1.fighterActionState = FighterActionState.Grabbed;
+                        }
+                        else{
+                            players.player1.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback);
+                            players.player2.moveHasHit = true;
+                            if(actionableOnHit){
+                                players.player1.fighterActionState = FighterActionState.Cancellable;
+                            }
                         }
                     }
                     Destroy(gameObject);

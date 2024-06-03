@@ -114,6 +114,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 5092949126825793750, guid: de4b772208dd12447a66a83064b4ae83, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 5338562179781621057, guid: de4b772208dd12447a66a83064b4ae83, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &6528250273587740441
@@ -259,7 +263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: damage
-      value: 15
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: freeze
@@ -457,11 +461,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: damage
-      value: 15
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: freeze
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: boxType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: hitstun
@@ -564,7 +572,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: damage
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: freeze

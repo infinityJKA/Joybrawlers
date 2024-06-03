@@ -68,6 +68,8 @@ PlayableDirector:
     value: {fileID: 7005553166437219935}
   - key: {fileID: 6672607237016706624, guid: e2e0787ada82df447aeaf02dbe92a547, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 5321202790691880959, guid: e2e0787ada82df447aeaf02dbe92a547, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &2534515599800763248
@@ -200,7 +202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7951998558065149032, guid: 07f9b1d73d02ace4fb482c0da57483b0, type: 3}
       propertyPath: damage
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7951998558065149032, guid: 07f9b1d73d02ace4fb482c0da57483b0, type: 3}
       propertyPath: knockdown

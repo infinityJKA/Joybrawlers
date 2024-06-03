@@ -17,6 +17,7 @@ public class Players : MonoBehaviour
     public GameObject p1_Spawn,p2_Spawn;
     public double inputValidTime;
     public TimelineHandler timelineHandlerPrefab,p1_actionTimeline,p2_actionTimeline;
+    public PlayerBattleUI p1UI,p2UI;
 
     void Start(){
         Application.targetFrameRate = 200; 
@@ -25,8 +26,8 @@ public class Players : MonoBehaviour
     void Update(){
         if(battleState == BattleState.Initialize){ /////////////////////////////////////////////
             
-            player1.InitializeBattleStart(p1_Spawn.transform.position,p1_Spawn.transform.rotation);
-            player2.InitializeBattleStart(p2_Spawn.transform.position,p2_Spawn.transform.rotation);
+            player1.InitializeBattleStart(p1_Spawn.transform.position,p1_Spawn.transform.rotation,p1UI);
+            player2.InitializeBattleStart(p2_Spawn.transform.position,p2_Spawn.transform.rotation,p2UI);
 
             //change this to intro later
             battleState = BattleState.Battle;
