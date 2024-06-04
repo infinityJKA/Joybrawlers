@@ -16,3 +16,4 @@ MonoBehaviour:
   boxData: {fileID: 1099875109709416419, guid: b412992df9868d7499425cc141aff264, type: 3}
   actionStateDuringAction: 4
   CancelInto: []
+  meterGain: 5

@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7a40260f66f722a4c918e83c67969e90, type: 2}
   - {fileID: 11400000, guid: 48907c3dc3f29dc48b8926a84b0e8b42, type: 2}
   - {fileID: 11400000, guid: 8be37283603d38b47a887c660f803045, type: 2}
+  meterGain: 23

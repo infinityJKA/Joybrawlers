@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     public GameObject grabTracker;
     public PlayerBattleUI playerUI;
     public bool holdingDown;
+    private int maxMeter = 1000;
 
     void Start(){
         playersManager = GameObject.Find("Players").GetComponent<Players>();
@@ -84,12 +85,12 @@ public class Player : MonoBehaviour
         if(comboed == 0){
             playerUI.HPRed.fillAmount = (float)HP/MaxHP;
         }
-        playerUI.SuperBlue.fillAmount = (float)meter/1000;
+        playerUI.SuperBlue.fillAmount = (float)meter/maxMeter;
         
-        if(meter == 1000){playerUI.SuperNumber.text = "4";}
-        else if(meter >= 750){playerUI.SuperNumber.text = "3";}
-        else if(meter >= 500){playerUI.SuperNumber.text = "2";}
-        else if(meter >= 250){playerUI.SuperNumber.text = "1";}
+        if(meter == maxMeter){playerUI.SuperNumber.text = "4";}
+        else if(meter >= (float)maxMeter*0.75){playerUI.SuperNumber.text = "3";}
+        else if(meter >= (float)maxMeter*0.5){playerUI.SuperNumber.text = "2";}
+        else if(meter >= (float)maxMeter*0.25){playerUI.SuperNumber.text = "1";}
         else{playerUI.SuperNumber.text = "0";}
 
 
@@ -462,6 +463,13 @@ public class Player : MonoBehaviour
     public void Action(Action action){
         if(actionTimeline.currentActionName == action.name){  // stop if the action is already in action
             return;
+        }
+
+        if(meter + action.meterGain > maxMeter){
+            meter = maxMeter;
+        }
+        else{
+            meter += action.meterGain;
         }
 
         if(action.actionStateDuringAction == FighterActionState.Shield){

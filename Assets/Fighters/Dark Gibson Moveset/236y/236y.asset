@@ -17,3 +17,4 @@ MonoBehaviour:
   actionStateDuringAction: 4
   CancelInto:
   - {fileID: 11400000, guid: 48907c3dc3f29dc48b8926a84b0e8b42, type: 2}
+  meterGain: 35
