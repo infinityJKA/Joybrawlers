@@ -51,11 +51,15 @@ public class Player : MonoBehaviour
 
     public void PlayerUpdate(){
 
-        if(otherPlayer.fighterObject.transform.position.x > fighterObject.transform.position.x){
-            facingInvert = false;
-        }
-        else{
-            facingInvert = true;
+        if(fighterActionState == FighterActionState.Neutral || fighterActionState == FighterActionState.Shield){
+            if(currentAction != fighter.WalkForwards && currentAction != fighter.WalkBackwards){
+                if(otherPlayer.fighterObject.transform.position.x > fighterObject.transform.position.x){
+                    facingInvert = false;
+                }
+                else{
+                    facingInvert = true;
+                }
+            }
         }
 
         if(fighterActionState == FighterActionState.Neutral || fighterActionState == FighterActionState.Knockdown){      // CHANGE FACING
@@ -264,15 +268,31 @@ public class Player : MonoBehaviour
                     if(fighterState == FighterState.Standing){
                         if(inputs.Count > 0){
                             if(inputs[inputs.Count-1] == "6"){         //  WALKING
-                                Action(fighter.WalkForwards);
-                                if(xVel < fighter.walkSpeed){
-                                    SetVelocityX(fighter.walkSpeed);
+                                if(currentAction == fighter.WalkBackwards){ // if already walking backwards don't change
+                                    Action(fighter.WalkBackwards);
+                                    if(xVel > fighter.walkBackSpeed){
+                                        SetVelocityX(fighter.walkBackSpeed);
+                                    }
+                                }
+                                else{
+                                    Action(fighter.WalkForwards);
+                                    if(xVel < fighter.walkSpeed){
+                                        SetVelocityX(fighter.walkSpeed);
+                                    }
                                 }
                             }
                             else if(inputs[inputs.Count-1] == "4"){    // WALKING BACKWARDS
-                                Action(fighter.WalkBackwards);
-                                if(xVel > fighter.walkBackSpeed){
-                                    SetVelocityX(fighter.walkBackSpeed);
+                                if(currentAction == fighter.WalkForwards){ // if already walking forwards don't change
+                                    Action(fighter.WalkForwards);
+                                    if(xVel > fighter.walkSpeed){
+                                        SetVelocityX(fighter.walkSpeed);
+                                    }
+                                }
+                                else{
+                                    Action(fighter.WalkBackwards);
+                                    if(xVel > fighter.walkBackSpeed){
+                                        SetVelocityX(fighter.walkBackSpeed);
+                                    }
                                 }
                             }
                             else{
@@ -373,7 +393,7 @@ public class Player : MonoBehaviour
                 if(!superArmored){
                     if(willTrip && fighterState == FighterState.Standing || willTrip && fighterState == FighterState.Crouching){
                         comboed += 1;
-
+                        incomingKnockback = false;
                         fighterActionState = FighterActionState.Knockdown;
                     }
                     else{
