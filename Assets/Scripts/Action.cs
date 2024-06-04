@@ -15,6 +15,7 @@ public class Action : ScriptableObject
     public FighterActionState actionStateDuringAction = FighterActionState.Attacking;
     public List<Action> CancelInto;
     public int meterGain;
+    public bool cancelOnLanding;
 
 }
 

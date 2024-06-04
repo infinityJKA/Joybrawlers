@@ -433,18 +433,31 @@ public class Player : MonoBehaviour
     public void PlayerPhysics(){
         if(!incomingKnockback && fighterActionState != FighterActionState.Grabbed){ // pauses during freeze
             
-            if(fighterObject.transform.position[1]+yVel < 0 && fighterObject.transform.position.y + yVel < fighterObject.transform.position.y){
-                Debug.Log("YOU LANDED");
-                yVel = 0;
-                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0],0,fighterObject.transform.position[2]);
+            if(fighterState == FighterState.InAir){
+                if(fighterObject.transform.position[1]+yVel < 0 && fighterObject.transform.position.y + yVel < fighterObject.transform.position.y){
+                    Debug.Log("YOU LANDED");
+                    yVel = 0;
+                    fighterObject.transform.position = new Vector3(fighterObject.transform.position[0],0,fighterObject.transform.position[2]);
+                    fighterState = FighterState.Standing;
+                    if(currentAction.cancelOnLanding){
+                        
+                        // DONT USE Action(fighter.Idle) HERE IT WILL CAUSE INFINITE RANGE ATTACKS FOR SOME REASON
+                        fighterActionState = FighterActionState.Neutral;
+                    }
+                }
+                else{
+                    yVel -= 0.1f;
+                }
+            }
+
+            if(fighterObject.transform.position[1]+yVel >= 0){
+                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
             }
             else{
-                yVel -= 0.1f;
+                fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,0,0);
             }
-            
-        
-            fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
-        
+
+
             if(fighterState != FighterState.InAir && yVel > 0){
                 fighterState = FighterState.InAir;
             }

@@ -78,6 +78,7 @@ public class Box : MonoBehaviour
             if(c.gameObject.GetComponent<Box>() == true){
                 Box otherBox = c.gameObject.GetComponent<Box>(); 
                 if(otherBox.playerNumber != playerNumber && otherBox.boxType == BoxType.Hurtbox){
+                    // Debug.Log("p1 and p2 hurtboxes touching ontriggerstay");
                     if(playerNumber == 1){
                         if(players.player1.facingInvert == false && players.player1.xVel > 0 || players.player1.facingInvert && players.player1.xVel < 0){
                             players.player2.xVelContact = players.player1.xVel;
