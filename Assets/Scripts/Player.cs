@@ -79,11 +79,18 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Debug.Log(HP/MaxHP);
+        // Update UI for HP and Super
         playerUI.HPGreen.fillAmount = (float)HP/MaxHP;
         if(comboed == 0){
             playerUI.HPRed.fillAmount = (float)HP/MaxHP;
         }
+        playerUI.SuperBlue.fillAmount = (float)meter/1000;
+        
+        if(meter == 1000){playerUI.SuperNumber.text = "4";}
+        else if(meter >= 750){playerUI.SuperNumber.text = "3";}
+        else if(meter >= 500){playerUI.SuperNumber.text = "2";}
+        else if(meter >= 250){playerUI.SuperNumber.text = "1";}
+        else{playerUI.SuperNumber.text = "0";}
 
 
         if(playersManager.battleState == BattleState.Battle){
@@ -268,32 +275,20 @@ public class Player : MonoBehaviour
                     if(fighterState == FighterState.Standing){
                         if(inputs.Count > 0){
                             if(inputs[inputs.Count-1] == "6"){         //  WALKING
-                                if(currentAction == fighter.WalkBackwards){ // if already walking backwards don't change
-                                    Action(fighter.WalkBackwards);
-                                    if(xVel > fighter.walkBackSpeed){
-                                        SetVelocityX(fighter.walkBackSpeed);
-                                    }
-                                }
-                                else{
+                                
                                     Action(fighter.WalkForwards);
                                     if(xVel < fighter.walkSpeed){
                                         SetVelocityX(fighter.walkSpeed);
                                     }
-                                }
+                                
                             }
                             else if(inputs[inputs.Count-1] == "4"){    // WALKING BACKWARDS
-                                if(currentAction == fighter.WalkForwards){ // if already walking forwards don't change
-                                    Action(fighter.WalkForwards);
-                                    if(xVel > fighter.walkSpeed){
-                                        SetVelocityX(fighter.walkSpeed);
-                                    }
-                                }
-                                else{
+                                
                                     Action(fighter.WalkBackwards);
                                     if(xVel > fighter.walkBackSpeed){
                                         SetVelocityX(fighter.walkBackSpeed);
                                     }
-                                }
+                                
                             }
                             else{
                                 Action(fighter.Idle);           //  IDLE
