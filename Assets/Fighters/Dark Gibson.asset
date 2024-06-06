@@ -15,10 +15,15 @@ MonoBehaviour:
   fighterName: Dark Gibson
   maxHP: 1000
   jumpHeight: 2.5
-  airJumps: 0
+  superJumpHeight: 6
   airJumpHeight: 0
+  airJumps: 0
   walkSpeed: 0.3
   walkBackSpeed: -0.3
+  airDrift: 0.2
+  airDriftBack: -0.2
+  diagonalJumpVertMultiplier: 0.3
+  diagonalSuperJumpVertMultiplier: 0.2
   battlePortrait: {fileID: 21300000, guid: 3af115945fcec444caec9be400737ec4, type: 3}
   model: {fileID: 919132149155446097, guid: ba799696c2e42a44588d8d897870c5ed, type: 3}
   animator: {fileID: 9100000, guid: 7f0b95edcd3c41841ae42e8797f1e1b1, type: 2}
@@ -29,6 +34,7 @@ MonoBehaviour:
   WalkBackwards: {fileID: 11400000, guid: d30518cc07d72bc41befa293a61ceee3, type: 2}
   Jump: {fileID: 11400000, guid: 70f552b625343934886944ce30ed44de, type: 2}
   AirJump: {fileID: 0}
+  SuperJump: {fileID: 11400000, guid: c06e124ef1980b8439330a3a47f795a6, type: 2}
   GroundHit: {fileID: 11400000, guid: b61ca0db35722a840b4533ca1bc75520, type: 2}
   AirHit: {fileID: 11400000, guid: 690805a42d5032f40a93cd3a8ec1b365, type: 2}
   Grabbed: {fileID: 11400000, guid: 7ffa672d2f6dca743b418570429b2771, type: 2}
@@ -87,6 +93,12 @@ MonoBehaviour:
     validActionState: 0
     meter: 0
     action: {fileID: 11400000, guid: d9980b6325cd23442882856a384570de, type: 2}
+  - requiredInputs:
+    - y
+    validFighterState: 2
+    validActionState: 0
+    meter: 0
+    action: {fileID: 11400000, guid: c30b91a9124a9164187e9bdb4aedab3c, type: 2}
   - requiredInputs:
     - y
     validFighterState: 0

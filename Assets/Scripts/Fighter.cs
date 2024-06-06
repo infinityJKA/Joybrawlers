@@ -8,17 +8,16 @@ public class Fighter : ScriptableObject
 {
     public string fighterName;
     public int maxHP;
-    public float jumpHeight;
+    public float jumpHeight,superJumpHeight,airJumpHeight;
     public int airJumps;
-    public float airJumpHeight;
-    public float walkSpeed,walkBackSpeed;
+    public float walkSpeed,walkBackSpeed,airDrift,airDriftBack,diagonalJumpVertMultiplier,diagonalSuperJumpVertMultiplier;
     public Sprite battlePortrait;
     public GameObject model;
     public RuntimeAnimatorController animator;
 
     public Action Idle,Crouching,AirIdle,
     WalkForwards,WalkBackwards,
-    Jump,AirJump,
+    Jump,AirJump,SuperJump,
     GroundHit,AirHit,Grabbed,
     KnockedDown,LaunchUp,LaunchDown,
     NeutralGetUp,GetUpAttack,GetUpRoll,

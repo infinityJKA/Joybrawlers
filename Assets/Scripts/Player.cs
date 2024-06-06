@@ -140,7 +140,6 @@ public class Player : MonoBehaviour
                 else if(inputs[inputs.Count-1] != "7" && inputs[inputs.Count-1] != "4" && inputs[inputs.Count-1] != "1"){
                     fighterActionState = FighterActionState.Neutral;
                 }
-
             }
 
             
@@ -247,7 +246,24 @@ public class Player : MonoBehaviour
                         }
                         
                         if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
-                            Action(fighter.Jump);
+                            if(fighterState == FighterState.Crouching){
+                                Debug.Log("SUPERJUMP 1");
+                                Action(fighter.SuperJump);
+                            }
+                            else{
+                                if(inputs.Count >= 3 && inputTime[inputs.Count-3]+0.1f > Time.time){
+                                    if(inputs[inputs.Count-3] == "2" || inputs[inputs.Count-3] == "1" || inputs[inputs.Count-3] == "3"){
+                                        Debug.Log("SUPERJUMP 2");
+                                        Action(fighter.SuperJump);
+                                    }
+                                    else{
+                                        Action(fighter.Jump);
+                                    }
+                                }
+                                else{
+                                    Action(fighter.Jump);
+                                }
+                            }
                         }
                     }
                 }
@@ -308,7 +324,26 @@ public class Player : MonoBehaviour
                         Action(fighter.Crouching);
                     }
                     else if(fighterState == FighterState.InAir){
-                        Action(fighter.AirIdle);
+                        if(inputs.Count > 0){
+                            if(inputs[inputs.Count-1] == "6"){         //  Air drift forwards
+                                if(xVel < fighter.airDrift){
+                                    SetVelocityX(fighter.airDrift);
+                                }
+                                
+                            }
+                            else if(inputs[inputs.Count-1] == "4"){    // Air drift backwards
+                                if(xVel > fighter.airDriftBack){
+                                    SetVelocityX(fighter.airDriftBack);
+                                }
+                                
+                            }
+                            else{
+                                Action(fighter.AirIdle);
+                            }
+                        }
+                        else{
+                            Action(fighter.AirIdle);
+                        }
                     }
                 }
                 else if(fighterActionState == FighterActionState.Knockdown){
@@ -468,7 +503,13 @@ public class Player : MonoBehaviour
             //     n = 0.965f;
             // }
 
-            xVel = xVel*n;
+            if(fighterState == FighterState.InAir){  // don't decrease xVel while during a self-instantiated action
+                if(fighterActionState == FighterActionState.Attacking || fighterActionState == FighterActionState.NonattackAction){}
+                else{xVel = xVel*n;}
+            }
+            else{
+                xVel = xVel*n;
+            }
             yVel = yVel*n;
         }
     }

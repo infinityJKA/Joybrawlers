@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SignalFunctions : MonoBehaviour
@@ -26,6 +27,13 @@ public class SignalFunctions : MonoBehaviour
     }
 
     public void Jump(){
+        JumpingLogic(false);
+    }
+    public void SuperJump(){
+        JumpingLogic(true);
+    }
+
+    private void JumpingLogic(bool superJump){
         Debug.Log("jump");
         Player p;
         if(GetComponent<BoxData>().PlayerNumber == 1){
@@ -37,13 +45,28 @@ public class SignalFunctions : MonoBehaviour
 
         if(p.inputs.Count > 0){
             if(p.inputs[p.inputs.Count-1] == "9" || p.inputs[p.inputs.Count-1] == "6" || p.inputs[p.inputs.Count-1] == "3"){
-                p.AddVelocity(p.fighter.walkSpeed*2.5f,p.fighter.jumpHeight);
+                if(superJump){
+                    p.AddVelocity(p.fighter.diagonalSuperJumpVertMultiplier,p.fighter.superJumpHeight);
+                }
+                else{
+                    p.AddVelocity(p.fighter.diagonalJumpVertMultiplier,p.fighter.jumpHeight);
+                }
             }
             else if(p.inputs[p.inputs.Count-1] == "7" || p.inputs[p.inputs.Count-1] == "4" || p.inputs[p.inputs.Count-1] == "1"){
-                p.AddVelocity(p.fighter.walkBackSpeed*2.5f,p.fighter.jumpHeight);
+                if(superJump){
+                    p.AddVelocity(p.fighter.diagonalSuperJumpVertMultiplier,p.fighter.superJumpHeight);
+                }
+                else{
+                    p.AddVelocity(p.fighter.diagonalJumpVertMultiplier*-1f,p.fighter.jumpHeight);
+                }
             }
             else{
-                p.AddVelocity(0,p.fighter.jumpHeight);
+                if(superJump){
+                    p.AddVelocity(0,p.fighter.superJumpHeight);
+                }
+                else{
+                    p.AddVelocity(0,p.fighter.jumpHeight);
+                }
             }
         }
         else{

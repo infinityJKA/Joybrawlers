@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4673364528443307343}
   - component: {fileID: 7037367354016892019}
   m_Layer: 0
-  m_Name: Jump
+  m_Name: Super Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,18 +60,12 @@ PlayableDirector:
   m_GameObject: {fileID: 224501366808145032}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: a8d4ca40b0b1550498ea49b546fe4e27, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 142085ed1b161ba45a51638b1a34b378, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -1631865222921501076, guid: a8d4ca40b0b1550498ea49b546fe4e27, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -8721557193819425004, guid: a8d4ca40b0b1550498ea49b546fe4e27, type: 2}
-    value: {fileID: 299377101564024579}
-  - key: {fileID: 5774536686301954181, guid: a8d4ca40b0b1550498ea49b546fe4e27, type: 2}
-    value: {fileID: 4673364528443307343}
   - key: {fileID: 0}
     value: {fileID: 0}
   - key: {fileID: 0}
@@ -86,7 +80,19 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: 1353982325907802925, guid: a8d4ca40b0b1550498ea49b546fe4e27, type: 2}
+  - key: {fileID: -1631865222921501076, guid: 142085ed1b161ba45a51638b1a34b378, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8721557193819425004, guid: 142085ed1b161ba45a51638b1a34b378, type: 2}
+    value: {fileID: 299377101564024579}
+  - key: {fileID: 5774536686301954181, guid: 142085ed1b161ba45a51638b1a34b378, type: 2}
+    value: {fileID: 4673364528443307343}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 5476396823677564206, guid: 142085ed1b161ba45a51638b1a34b378, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
@@ -105,12 +111,15 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: cdc27dfa80140e545872adc06c38a29f, type: 2}
+    - {fileID: 11400000, guid: 4c545e6a5525904409143017bbc86433, type: 2}
     m_Events:
+    - m_PersistentCalls:
+        m_Calls: []
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7037367354016892019}
           m_TargetAssemblyTypeName: SignalFunctions, Assembly-CSharp
-          m_MethodName: Jump
+          m_MethodName: SuperJump
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
