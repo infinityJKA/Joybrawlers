@@ -18,6 +18,7 @@ public class Players : MonoBehaviour
     public double inputValidTime;
     public TimelineHandler timelineHandlerPrefab,p1_actionTimeline,p2_actionTimeline;
     public PlayerBattleUI p1UI,p2UI;
+    public FighterCamera fighterCam;
 
     void Start(){
         Application.targetFrameRate = 200; 
@@ -28,6 +29,10 @@ public class Players : MonoBehaviour
             
             player1.InitializeBattleStart(p1_Spawn.transform.position,p1_Spawn.transform.rotation,p1UI);
             player2.InitializeBattleStart(p2_Spawn.transform.position,p2_Spawn.transform.rotation,p2UI);
+
+            fighterCam.cameraFollowObjects.Clear();
+            fighterCam.cameraFollowObjects.Add(player1.fighterObject.transform);
+            fighterCam.cameraFollowObjects.Add(player2.fighterObject.transform);
 
             //change this to intro later
             battleState = BattleState.Battle;
