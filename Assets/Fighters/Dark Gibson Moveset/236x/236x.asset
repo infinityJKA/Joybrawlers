@@ -15,5 +15,8 @@ MonoBehaviour:
   moveName: Slide
   boxData: {fileID: 1206767021733326604, guid: 0e2ef7503b6a6f54cb927cc45c456640, type: 3}
   actionStateDuringAction: 4
-  CancelInto: []
+  CancelInto:
+  - {fileID: 11400000, guid: 4dea270753ed01347a38ea750f511d73, type: 2}
   meterGain: 30
+  cancelOnLanding: 0
+  cancelIntoJumpstart: 0

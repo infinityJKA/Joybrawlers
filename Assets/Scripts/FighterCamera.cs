@@ -6,7 +6,7 @@ using UnityEngine;
 public class FighterCamera : MonoBehaviour
 {
     public List<Transform> cameraFollowObjects;
-    public float yOffset,minimumDistance,zOffset;
+    public float yOffset,minimumDistance,zOffset,zMax,yPotentialMax;
     private float xMin,xMax,yMin,yMax;
 
     private void LateUpdate(){
@@ -21,11 +21,9 @@ public class FighterCamera : MonoBehaviour
             Transform obj = cameraFollowObjects[i];
             if(obj.position.x < xMin){
                 xMin = obj.position.x;
-                // Debug.Log("xMin " + obj.name);
             }
             else if(obj.position.x > xMax){
                 xMax = obj.position.x;
-                // Debug.Log("xMin " + obj.name);
             }
             if(obj.position.y < yMin){
                 yMin = obj.position.y;
@@ -53,7 +51,21 @@ public class FighterCamera : MonoBehaviour
             zMod = (distance-minimumDistance)*0.5f;
         }
 
-        transform.position = new Vector3(xMiddle,yMiddle+yOffset+yMod,-distance-zOffset+zMod);
+        float x = xMiddle;
+        float y = yMiddle+yOffset+yMod;
+        float z = -distance-zOffset+zMod;
+
+        if(z < -zMax){
+            z = -zMax;
+        }
+
+        // if(y > yPotentialMax){
+        //     y = yPotentialMax;
+        // }
+
+        
+        transform.position = new Vector3(x,y,z);
+        
 
 
     }

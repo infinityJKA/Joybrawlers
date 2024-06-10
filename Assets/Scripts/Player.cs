@@ -391,7 +391,7 @@ public class Player : MonoBehaviour
 
                 if(incomingKnockback){
                     if(freezeTimer + freezeTime < Time.time){
-                        AddVelocity(incomingXvel*-1,incomingYvel);
+                        AddVelocity(incomingXvel*-1,incomingYvel,true);
                         incomingKnockback = false;
                     }
                 }
@@ -442,7 +442,7 @@ public class Player : MonoBehaviour
             if(shieldedSuccessfully){
                 Debug.Log("Shielded!");
                 HP -= chipDamage;
-                AddVelocity(xShieldKnockback*-1,yShieldKnockback);
+                AddVelocity(xShieldKnockback*-1,yShieldKnockback,true);
             }
             else{
                 Debug.Log("Got hit!");
@@ -476,11 +476,21 @@ public class Player : MonoBehaviour
 
     }
 
-    public void AddVelocity(float x, float y){
-        if(facingInvert){
-           x *= -1; 
+    public void AddVelocity(float x, float y, bool isFromGettingHit){
+        //Deflect the x knockback to the attack when against a wall
+        if(isFromGettingHit && Math.Abs(fighterObject.transform.position.x)>=playersManager.wallDist){
+            if(otherPlayer.facingInvert){
+            x *= -1; 
+            }
+            otherPlayer.xVel += x;
         }
-        xVel += x;
+        else{
+            if(facingInvert){
+            x *= -1; 
+            }
+            xVel += x;
+        }
+
         yVel += y;
     }
 
@@ -511,6 +521,61 @@ public class Player : MonoBehaviour
                 }
             }
 
+            // WALL CHECKING
+            bool againstWall = false;
+            bool isLiteralWall = false;
+            bool isFauxDistanceWall = false;
+            if(Math.Abs(fighterObject.transform.position.x) >= playersManager.wallDist){
+                againstWall = true;
+                isLiteralWall = true;
+                
+                // prevent softlock via clipping
+                if(fighterObject.transform.position.x > playersManager.wallDist){
+                    fighterObject.transform.position = new Vector3(playersManager.wallDist,fighterObject.transform.position[1],0);
+                }
+                else if(fighterObject.transform.position.x < -playersManager.wallDist){
+                    fighterObject.transform.position = new Vector3(-playersManager.wallDist,fighterObject.transform.position[1],0);
+                }
+
+
+            }
+            else if(Math.Abs(fighterObject.transform.position.x-otherPlayer.fighterObject.transform.position.x) >= playersManager.maxPlayerDist){
+                againstWall = true;
+                isFauxDistanceWall = true;
+
+                // prevent softlock via clipping
+                if(fighterObject.transform.position.x-otherPlayer.fighterObject.transform.position.x > playersManager.maxPlayerDist){
+                    fighterObject.transform.position = new Vector3(otherPlayer.fighterObject.transform.position.x+playersManager.maxPlayerDist,fighterObject.transform.position[1],0);
+                }
+                else if(otherPlayer.fighterObject.transform.position.x-fighterObject.transform.position.x > playersManager.maxPlayerDist){
+                    fighterObject.transform.position = new Vector3(otherPlayer.fighterObject.transform.position.x-playersManager.maxPlayerDist,fighterObject.transform.position[1],0);
+                }
+
+            }
+
+            if(againstWall){
+                // WALL BOUNCE
+                if(!isFauxDistanceWall && fighterActionState == FighterActionState.Hit && Math.Abs(xVel) >= playersManager.minWallBounceVel){
+                    xVel = -xVel*0.9f;
+                }
+                // STOP VEL AGAINST WALL OTHERWISE
+                else{
+                    if(isLiteralWall){
+                        if(fighterObject.transform.position.x+xVel < -playersManager.wallDist || fighterObject.transform.position.x+xVel > playersManager.wallDist){
+                            xVel = 0;
+                            xVelContact = 0;
+                        }
+                    }
+                    if(isFauxDistanceWall){
+                        if(fighterObject.transform.position.x+xVel-otherPlayer.fighterObject.transform.position.x < -playersManager.maxPlayerDist || fighterObject.transform.position.x+xVel-otherPlayer.fighterObject.transform.position.x > playersManager.maxPlayerDist){
+                            xVel = 0;
+                            xVelContact = 0;
+                        }
+                    }
+                }
+            }
+
+            // PUSHED BY OTHER PLAYER
             if(fighterObject.transform.position[1]+yVel >= 0){
                 fighterObject.transform.position = new Vector3(fighterObject.transform.position[0]+xVel+xVelContact,fighterObject.transform.position[1]+yVel,0);
             }

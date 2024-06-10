@@ -19,6 +19,8 @@ public class Players : MonoBehaviour
     public TimelineHandler timelineHandlerPrefab,p1_actionTimeline,p2_actionTimeline;
     public PlayerBattleUI p1UI,p2UI;
     public FighterCamera fighterCam;
+    public int maxPlayerDist,wallDist;
+    public float minWallBounceVel;
 
     void Start(){
         Application.targetFrameRate = 200; 
