@@ -16,6 +16,7 @@ public class Action : ScriptableObject
     public List<Action> CancelInto;
     public int meterGain;
     public bool cancelOnLanding;
+    public bool cancelIntoJumpstart;
 
 }
 

@@ -245,29 +245,55 @@ public class Player : MonoBehaviour
                             fighterState = FighterState.Standing;
                         }
                         
-                        if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
-                            if(fighterState == FighterState.Crouching){
-                                Debug.Log("SUPERJUMP 1");
-                                Action(fighter.SuperJump);
-                            }
-                            else{
-                                if(inputs.Count >= 3 && inputTime[inputs.Count-3]+0.1f > Time.time){
-                                    if(inputs[inputs.Count-3] == "2" || inputs[inputs.Count-3] == "1" || inputs[inputs.Count-3] == "3"){
-                                        Debug.Log("SUPERJUMP 2");
-                                        Action(fighter.SuperJump);
-                                    }
-                                    else{
-                                        Action(fighter.Jump);
-                                    }
+                        // if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
+                        //     if(fighterState == FighterState.Crouching){
+                        //         Debug.Log("SUPERJUMP 1");
+                        //         Action(fighter.SuperJump);
+                        //     }
+                        //     else{
+                        //         if(inputs.Count >= 3 && inputTime[inputs.Count-3]+0.1f > Time.time){
+                        //             if(inputs[inputs.Count-3] == "2" || inputs[inputs.Count-3] == "1" || inputs[inputs.Count-3] == "3"){
+                        //                 Debug.Log("SUPERJUMP 2");
+                        //                 Action(fighter.SuperJump);
+                        //             }
+                        //             else{
+                        //                 Action(fighter.Jump);
+                        //             }
+                        //         }
+                        //         else{
+                        //             Action(fighter.Jump);
+                        //         }
+                        //     }
+                        // }
+                    }
+                }
+            }
+
+            if(fighterActionState == FighterActionState.Neutral || currentAction.cancelIntoJumpstart){  // CHECKS JUMP START
+                if(inputs.Count > 0 && fighterState != FighterState.InAir){
+                    if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
+                        if(fighterState == FighterState.Crouching){
+                            Debug.Log("SUPERJUMP 1");
+                            Action(fighter.SuperJump);
+                        }
+                        else{
+                            if(inputs.Count >= 3 && inputTime[inputs.Count-3]+0.1f > Time.time){
+                                if(inputs[inputs.Count-3] == "2" || inputs[inputs.Count-3] == "1" || inputs[inputs.Count-3] == "3"){
+                                    Debug.Log("SUPERJUMP 2");
+                                    Action(fighter.SuperJump);
                                 }
                                 else{
                                     Action(fighter.Jump);
                                 }
                             }
+                            else{
+                                Action(fighter.Jump);
+                            }
                         }
                     }
                 }
             }
+
 
             if(otherPlayer.fighterActionState == FighterActionState.Attacking){ // CODE TO ACTIVATE SHIELDING
                 if(fighterActionState == FighterActionState.Neutral || fighterActionState == FighterActionState.Cancellable || fighterActionState == FighterActionState.Shield){

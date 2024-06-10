@@ -42,36 +42,43 @@ public class SignalFunctions : MonoBehaviour
         else{
             p = GameObject.Find("P2").GetComponent<Player>();
         }
+        
+        float reduced = 1f;
+        if(p.holdingDown){
+            reduced = 0.5f;
+        }
 
         if(p.inputs.Count > 0){
             if(p.inputs[p.inputs.Count-1] == "9" || p.inputs[p.inputs.Count-1] == "6" || p.inputs[p.inputs.Count-1] == "3"){
                 if(superJump){
-                    p.AddVelocity(p.fighter.diagonalSuperJumpVertMultiplier,p.fighter.superJumpHeight);
+                    p.AddVelocity(p.fighter.diagonalSuperJumpVertMultiplier,p.fighter.superJumpHeight*reduced);
                 }
                 else{
-                    p.AddVelocity(p.fighter.diagonalJumpVertMultiplier,p.fighter.jumpHeight);
+                    p.AddVelocity(p.fighter.diagonalJumpVertMultiplier,p.fighter.jumpHeight*reduced);
                 }
             }
             else if(p.inputs[p.inputs.Count-1] == "7" || p.inputs[p.inputs.Count-1] == "4" || p.inputs[p.inputs.Count-1] == "1"){
                 if(superJump){
-                    p.AddVelocity(p.fighter.diagonalSuperJumpVertMultiplier,p.fighter.superJumpHeight);
+                    p.AddVelocity(p.fighter.diagonalSuperJumpVertMultiplier,p.fighter.superJumpHeight*reduced);
                 }
                 else{
-                    p.AddVelocity(p.fighter.diagonalJumpVertMultiplier*-1f,p.fighter.jumpHeight);
+                    p.AddVelocity(p.fighter.diagonalJumpVertMultiplier*-1f,p.fighter.jumpHeight*reduced);
                 }
             }
             else{
                 if(superJump){
-                    p.AddVelocity(0,p.fighter.superJumpHeight);
+                    p.AddVelocity(0,p.fighter.superJumpHeight*reduced);
                 }
                 else{
-                    p.AddVelocity(0,p.fighter.jumpHeight);
+                    p.AddVelocity(0,p.fighter.jumpHeight*reduced);
                 }
             }
         }
         else{
-            p.AddVelocity(0,p.fighter.jumpHeight);
+            p.AddVelocity(0,p.fighter.jumpHeight*reduced);
         }
+        p.fighterState = FighterState.InAir;
+        p.fighterActionState = FighterActionState.Cancellable;
     }
 
     public void GrabRelease(){
