@@ -21,6 +21,7 @@ public class Players : MonoBehaviour
     public FighterCamera fighterCam;
     public int maxPlayerDist,wallDist;
     public float minWallBounceVel;
+    public bool playersSpawned = false;
 
     void Start(){
         Application.targetFrameRate = 200; 
@@ -31,6 +32,7 @@ public class Players : MonoBehaviour
             
             player1.InitializeBattleStart(p1_Spawn.transform.position,p1_Spawn.transform.rotation,p1UI);
             player2.InitializeBattleStart(p2_Spawn.transform.position,p2_Spawn.transform.rotation,p2UI);
+            playersSpawned = true; // prevents non-gamebreaking missing object glitch in physics
 
             fighterCam.cameraFollowObjects.Clear();
             fighterCam.cameraFollowObjects.Add(player1.fighterObject.transform);
@@ -46,7 +48,9 @@ public class Players : MonoBehaviour
     }
 
     void FixedUpdate(){
-        player1.PlayerPhysics();
-        player2.PlayerPhysics();
+        if(playersSpawned){
+            player1.PlayerPhysics();
+            player2.PlayerPhysics();
+        }
     }
 }
