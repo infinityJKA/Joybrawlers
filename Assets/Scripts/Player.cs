@@ -8,6 +8,7 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.Playables;
 using System.Data.Common;
 using TMPro;
+using Unity.VisualScripting.Dependencies.Sqlite;
 
 
 public class Player : MonoBehaviour
@@ -51,6 +52,14 @@ public class Player : MonoBehaviour
     }
 
     public void PlayerUpdate(){
+
+        if(meter < 0){
+            meter = 0;
+        }
+
+        if(playersManager.trainingMode && fighterActionState != FighterActionState.Knockdown && fighterActionState != FighterActionState.Hit && fighterActionState != FighterActionState.Grabbed){
+            HP = fighter.maxHP;
+        }
 
         if(fighterActionState == FighterActionState.Neutral || fighterActionState == FighterActionState.Shield){
             if(currentAction != fighter.WalkForwards && currentAction != fighter.WalkBackwards){
@@ -377,6 +386,9 @@ public class Player : MonoBehaviour
                         if(inputs[inputs.Count-1] == "7" || inputs[inputs.Count-1] == "8" || inputs[inputs.Count-1] == "9"){
                             Action(fighter.NeutralGetUp);
                         }
+                        else if(inputs[inputs.Count-1] == "x" || inputs[inputs.Count-1] == "y"){
+                            Action(fighter.GetUpAttack);
+                        }
                         else{
                             Action(fighter.KnockedDown);
                         }
@@ -447,9 +459,9 @@ public class Player : MonoBehaviour
             else{
                 Debug.Log("Got hit!");
                 HP -= damage;
+                comboed += 1;
                 if(!superArmored){
                     if(willTrip && fighterState == FighterState.Standing || willTrip && fighterState == FighterState.Crouching){
-                        comboed += 1;
                         incomingKnockback = false;
                         fighterActionState = FighterActionState.Knockdown;
                     }
@@ -469,6 +481,7 @@ public class Player : MonoBehaviour
                         fighterActionState = FighterActionState.Hit;
                     }
                 }
+                
             }
 
 
@@ -619,6 +632,11 @@ public class Player : MonoBehaviour
 
         if(action.actionStateDuringAction == FighterActionState.Shield){
             SetVelocityX(0);
+        }
+
+        if(fighterActionState == FighterActionState.Knockdown){
+            inputs.Clear();
+            inputTime.Clear();
         }
 
         // set action state

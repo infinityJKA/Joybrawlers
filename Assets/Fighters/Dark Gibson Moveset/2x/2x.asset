@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48907c3dc3f29dc48b8926a84b0e8b42, type: 2}
   - {fileID: 11400000, guid: 8be37283603d38b47a887c660f803045, type: 2}
   - {fileID: 11400000, guid: 4dea270753ed01347a38ea750f511d73, type: 2}
+  - {fileID: 11400000, guid: 1db04d66f2130094ba47082c193d319f, type: 2}
   meterGain: 23
   cancelOnLanding: 0
   cancelIntoJumpstart: 0

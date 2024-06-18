@@ -17,3 +17,5 @@ MonoBehaviour:
   actionStateDuringAction: 4
   CancelInto: []
   meterGain: 5
+  cancelOnLanding: 0
+  cancelIntoJumpstart: 0

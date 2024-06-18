@@ -15,7 +15,8 @@ MonoBehaviour:
   moveName: 2y
   boxData: {fileID: 5834531046750828854, guid: 93c842cfac7eced428f0b6d4dcbf8e23, type: 3}
   actionStateDuringAction: 4
-  CancelInto: []
-  meterGain: 0
+  CancelInto:
+  - {fileID: 11400000, guid: 1db04d66f2130094ba47082c193d319f, type: 2}
+  meterGain: 31
   cancelOnLanding: 0
   cancelIntoJumpstart: 1

@@ -26,6 +26,16 @@ public class SignalFunctions : MonoBehaviour
         }
     }
 
+    public void xVelocitySet(float x){
+        Debug.Log("xVelSet");
+        if(GetComponent<BoxData>().PlayerNumber == 1){
+            GameObject.Find("P1").GetComponent<Player>().SetVelocityX(x);
+        }
+        else if(GetComponent<BoxData>().PlayerNumber == 2){
+            GameObject.Find("P2").GetComponent<Player>().SetVelocityX(x);
+        }
+    }
+
     public void Jump(){
         JumpingLogic(false);
     }

@@ -18,4 +18,8 @@ MonoBehaviour:
   CancelInto:
   - {fileID: 11400000, guid: f063e6e69157bf54ab11f3e0dd25881f, type: 2}
   - {fileID: 11400000, guid: 7a40260f66f722a4c918e83c67969e90, type: 2}
+  - {fileID: 11400000, guid: 1db04d66f2130094ba47082c193d319f, type: 2}
+  - {fileID: 11400000, guid: 4dea270753ed01347a38ea750f511d73, type: 2}
   meterGain: 16
+  cancelOnLanding: 0
+  cancelIntoJumpstart: 0

@@ -22,6 +22,7 @@ public class Players : MonoBehaviour
     public int maxPlayerDist,wallDist;
     public float minWallBounceVel;
     public bool playersSpawned = false;
+    public bool trainingMode;
 
     void Start(){
         Application.targetFrameRate = 200; 

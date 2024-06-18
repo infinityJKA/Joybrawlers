@@ -17,4 +17,7 @@ MonoBehaviour:
   actionStateDuringAction: 4
   CancelInto:
   - {fileID: 11400000, guid: 48907c3dc3f29dc48b8926a84b0e8b42, type: 2}
+  - {fileID: 11400000, guid: 1db04d66f2130094ba47082c193d319f, type: 2}
   meterGain: 35
+  cancelOnLanding: 0
+  cancelIntoJumpstart: 0

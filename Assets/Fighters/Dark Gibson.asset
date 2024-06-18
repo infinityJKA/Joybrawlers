@@ -42,7 +42,7 @@ MonoBehaviour:
   LaunchUp: {fileID: 0}
   LaunchDown: {fileID: 0}
   NeutralGetUp: {fileID: 11400000, guid: 3069ce1e789b8034cb24281c064af93a, type: 2}
-  GetUpAttack: {fileID: 0}
+  GetUpAttack: {fileID: 11400000, guid: 4729c2fef6b186643b5c1dde3ac719d6, type: 2}
   GetUpRoll: {fileID: 0}
   GroundShield: {fileID: 11400000, guid: 9ae07776ea64ce84b8f213aa036085a7, type: 2}
   CrouchShield: {fileID: 11400000, guid: 383f1bc9057c43c4394016aee1f68f59, type: 2}
@@ -50,6 +50,19 @@ MonoBehaviour:
   Victory: {fileID: 0}
   Lose: {fileID: 0}
   inputActions:
+  - requiredInputs:
+    - 2
+    - 1
+    - 4
+    - 1
+    - 2
+    - 3
+    - 6
+    - x
+    validFighterState: 0
+    validActionState: 0
+    meter: 250
+    action: {fileID: 11400000, guid: 1db04d66f2130094ba47082c193d319f, type: 2}
   - requiredInputs:
     - 2
     - 3
@@ -99,6 +112,13 @@ MonoBehaviour:
     validActionState: 0
     meter: 0
     action: {fileID: 11400000, guid: c30b91a9124a9164187e9bdb4aedab3c, type: 2}
+  - requiredInputs:
+    - 1
+    - y
+    validFighterState: 1
+    validActionState: 0
+    meter: 0
+    action: {fileID: 11400000, guid: cee75cfd53a2d4d43952f8547a9a06ad, type: 2}
   - requiredInputs:
     - y
     validFighterState: 1

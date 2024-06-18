@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b6366358384034f8d5cb13a3560fcb, type: 3}
+  m_Name: Getup Attack
+  m_EditorClassIdentifier: 
+  moveName: Getup Attack
+  boxData: {fileID: 5205105118035354618, guid: 4aa9808a1a8d753468ae399ec831cd32, type: 3}
+  actionStateDuringAction: 4
+  CancelInto:
+  - {fileID: 11400000, guid: 1db04d66f2130094ba47082c193d319f, type: 2}
+  meterGain: 40
+  cancelOnLanding: 0
+  cancelIntoJumpstart: 0
