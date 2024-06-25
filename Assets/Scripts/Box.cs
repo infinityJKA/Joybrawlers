@@ -18,6 +18,9 @@ public class Box : MonoBehaviour
     public Players players;
     public bool grab;
     public Action grabAction;
+    
+    public AudioClip hitSound,shieldSound;
+    public float hitVol,shieldVol;
 
 
     void Start(){
@@ -44,7 +47,7 @@ public class Box : MonoBehaviour
                             players.player2.fighterActionState = FighterActionState.Grabbed;
                         }
                         else{
-                            players.player2.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback);
+                            players.player2.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback, hitSound, shieldSound, hitVol, shieldVol);
                             players.player1.moveHasHit = true;
                             if(actionableOnHit){
                                 players.player1.fighterActionState = FighterActionState.Cancellable;
@@ -57,7 +60,7 @@ public class Box : MonoBehaviour
                             players.player1.fighterActionState = FighterActionState.Grabbed;
                         }
                         else{
-                            players.player1.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback);
+                            players.player1.GetHit(damage,freeze,hitstun,xKnockback,yKnockback,trip,knockdown,armoredThrough,attackType,chipDamage,xShieldKnockback,yShieldKnockback, hitSound, shieldSound, hitVol, shieldVol);
                             players.player2.moveHasHit = true;
                             if(actionableOnHit){
                                 players.player1.fighterActionState = FighterActionState.Cancellable;

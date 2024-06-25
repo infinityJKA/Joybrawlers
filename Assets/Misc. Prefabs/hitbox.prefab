@@ -122,10 +122,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxType: 1
   damage: 60
+  chipDamage: 0
   hitstun: 0.3
   freeze: 0.05
   xKnockback: 0.35
   yKnockback: 0
+  xShieldKnockback: 0
+  yShieldKnockback: 0
   trip: 0
   knockdown: 0
   attackType: 0
@@ -135,6 +138,12 @@ MonoBehaviour:
   superArmor: 0
   superArmorEndurance: 0
   players: {fileID: 0}
+  grab: 0
+  grabAction: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: ffeb4db760b68ae4c850655f80cac970, type: 3}
+  shieldSound: {fileID: 8300000, guid: 0ff49d3760936ff498f76d4765fd3188, type: 3}
+  hitVol: 0.8
+  shieldVol: 0.4
 --- !u!95 &5586609709983750189
 Animator:
   serializedVersion: 5

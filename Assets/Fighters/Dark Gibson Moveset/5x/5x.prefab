@@ -102,6 +102,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 8671832073819709052, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: -835053395541154330, guid: 8acae30a7ab198245855a168011d1b48, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 22accb7b94d551a4a9231537e9851aaf: {fileID: 982059130283819732}
@@ -245,6 +249,10 @@ MonoBehaviour:
   players: {fileID: 0}
   grab: 0
   grabAction: {fileID: 0}
+  hitSound: {fileID: 0}
+  shieldSound: {fileID: 0}
+  hitVol: 0
+  shieldVol: 0
 --- !u!95 &4462028382591525276
 Animator:
   serializedVersion: 5
@@ -433,6 +441,10 @@ MonoBehaviour:
   players: {fileID: 0}
   grab: 0
   grabAction: {fileID: 0}
+  hitSound: {fileID: 0}
+  shieldSound: {fileID: 0}
+  hitVol: 0
+  shieldVol: 0
 --- !u!95 &5144681821541630996
 Animator:
   serializedVersion: 5
@@ -490,9 +502,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 2850248339918830088}
     m_Modifications:
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: hitVol
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d7f336ed7c745f748a8187acfd523df1, type: 3}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: shieldVol
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: chipDamage
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: shieldSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ff49d3760936ff498f76d4765fd3188, type: 3}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: xShieldKnockback
       value: 0.2

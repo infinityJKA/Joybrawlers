@@ -23,6 +23,7 @@ public class Players : MonoBehaviour
     public float minWallBounceVel;
     public bool playersSpawned = false;
     public bool trainingMode;
+    public Stage stage;
 
     void Start(){
         Application.targetFrameRate = 200; 
@@ -38,6 +39,8 @@ public class Players : MonoBehaviour
             fighterCam.cameraFollowObjects.Clear();
             fighterCam.cameraFollowObjects.Add(player1.fighterObject.transform);
             fighterCam.cameraFollowObjects.Add(player2.fighterObject.transform);
+
+            SfxManager.instance.PlayNewMusic(stage.music,stage.musicVolume);
 
             //change this to intro later
             battleState = BattleState.Battle;

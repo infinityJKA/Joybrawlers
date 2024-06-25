@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
                     fighterState = FighterState.InAir;
                 }
                 Box grabHit = grabTracker.GetComponent<Box>();
-                GetHit(grabHit.damage,grabHit.freeze,grabHit.hitstun,grabHit.xKnockback,grabHit.yKnockback,grabHit.trip,grabHit.knockdown,false,grabHit.attackType,grabHit.chipDamage,grabHit.xShieldKnockback,grabHit.yShieldKnockback);
+                GetHit(grabHit.damage,grabHit.freeze,grabHit.hitstun,grabHit.xKnockback,grabHit.yKnockback,grabHit.trip,grabHit.knockdown,false,grabHit.attackType,grabHit.chipDamage,grabHit.xShieldKnockback,grabHit.yShieldKnockback, grabHit.hitSound, grabHit.shieldSound, grabHit.hitVol, grabHit.shieldVol);
             }
 
             if(fighterActionState != FighterActionState.Knockdown){
@@ -432,7 +432,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GetHit(int damage, float freeze, float stun, float xKnockback, float yKnockback, bool willTrip, bool willKnockdown, bool superArmored, AttackType attackType, int chipDamage, float xShieldKnockback, float yShieldKnockback){
+    public void GetHit(int damage, float freeze, float stun, float xKnockback, float yKnockback, bool willTrip, bool willKnockdown, bool superArmored, AttackType attackType, int chipDamage, float xShieldKnockback, float yShieldKnockback, AudioClip hitSound, AudioClip shieldSound, float hitVol, float shieldVol){
         if(lastHitTime != Time.time){ // prevents overlapping hurtboxes getting hit multiple times at once
             lastHitTime = Time.time;
 
@@ -455,11 +455,17 @@ public class Player : MonoBehaviour
                 Debug.Log("Shielded!");
                 HP -= chipDamage;
                 AddVelocity(xShieldKnockback*-1,yShieldKnockback,true);
+                if(shieldSound != null){
+                    SfxManager.instance.PlaySFX(shieldSound,SfxManager.instance.transform,shieldVol);
+                }
             }
             else{
                 Debug.Log("Got hit!");
                 HP -= damage;
                 comboed += 1;
+                if(hitSound != null){
+                    SfxManager.instance.PlaySFX(hitSound,SfxManager.instance.transform,hitVol);
+                }
                 if(!superArmored){
                     if(willTrip && fighterState == FighterState.Standing || willTrip && fighterState == FighterState.Crouching){
                         incomingKnockback = false;
