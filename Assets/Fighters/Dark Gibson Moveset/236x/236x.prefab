@@ -300,6 +300,10 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 09414fd97af51a948a6b7ff3ff2b8186, type: 3}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: chipDamage
       value: 3
       objectReference: {fileID: 0}
@@ -502,6 +506,10 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 09414fd97af51a948a6b7ff3ff2b8186, type: 3}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: chipDamage
       value: 3
       objectReference: {fileID: 0}
@@ -608,6 +616,10 @@ PrefabInstance:
       propertyPath: hitstun
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 09414fd97af51a948a6b7ff3ff2b8186, type: 3}
     - target: {fileID: 61318409441897875, guid: 32afdcae2368b3e4e8047b434710f47e, type: 3}
       propertyPath: chipDamage
       value: 5

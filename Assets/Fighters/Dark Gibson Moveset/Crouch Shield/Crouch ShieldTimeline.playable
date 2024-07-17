@@ -227,7 +227,7 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events: []
---- !u!114 &-5620914102350796123
+--- !u!114 &-7402354776574397692
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,10 +251,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 0
     m_ClipIn: 0
-    m_Asset: {fileID: 9155746095757071242}
+    m_Asset: {fileID: 6334843653534164932}
     m_Duration: 1.25
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -5620914102350796123}
+    m_ParentTrack: {fileID: -7402354776574397692}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Tracks:
   - {fileID: -5123014658354335068}
   - {fileID: 6262084859679258550}
-  - {fileID: -5620914102350796123}
+  - {fileID: -7402354776574397692}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
---- !u!114 &9155746095757071242
+--- !u!114 &6334843653534164932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

@@ -232,6 +232,10 @@ MonoBehaviour:
   players: {fileID: 0}
   grab: 0
   grabAction: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: a2c44938cb303cf469b7037040ab0dde, type: 3}
+  shieldSound: {fileID: 0}
+  hitVol: 1
+  shieldVol: 0
 --- !u!95 &4437756731104816211
 Animator:
   serializedVersion: 5
@@ -420,6 +424,10 @@ MonoBehaviour:
   players: {fileID: 0}
   grab: 0
   grabAction: {fileID: 0}
+  hitSound: {fileID: 0}
+  shieldSound: {fileID: 0}
+  hitVol: 0
+  shieldVol: 0
 --- !u!54 &454726710575680822
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -608,6 +616,10 @@ MonoBehaviour:
   players: {fileID: 0}
   grab: 0
   grabAction: {fileID: 0}
+  hitSound: {fileID: 0}
+  shieldSound: {fileID: 0}
+  hitVol: 0
+  shieldVol: 0
 --- !u!54 &6312691898544061241
 Rigidbody:
   m_ObjectHideFlags: 0
