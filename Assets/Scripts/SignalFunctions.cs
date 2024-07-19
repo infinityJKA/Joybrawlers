@@ -104,4 +104,8 @@ public class SignalFunctions : MonoBehaviour
         p.moveHasHit = true;
     }
 
+    public void PlaySound(int n){
+        SfxManager.instance.PlaySFX(SfxManager.instance.SoundsForSignalFunctions[n],SfxManager.instance.transform,1);
+    }
+
 }

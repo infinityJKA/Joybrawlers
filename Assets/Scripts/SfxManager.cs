@@ -7,6 +7,7 @@ public class SfxManager : MonoBehaviour
     [SerializeField] private AudioSource soundObject;
     public AudioSource musicSource;
     public static SfxManager instance;
+    public List<AudioClip> SoundsForSignalFunctions;
 
     private void Awake(){
         if(instance == null){

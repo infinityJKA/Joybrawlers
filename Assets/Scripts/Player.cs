@@ -1,14 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Playables;
-using System.Data.Common;
-using TMPro;
-using Unity.VisualScripting.Dependencies.Sqlite;
 
 
 public class Player : MonoBehaviour

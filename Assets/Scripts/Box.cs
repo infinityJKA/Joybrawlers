@@ -43,6 +43,7 @@ public class Box : MonoBehaviour
                     }
                     if(playerNumber == 1){
                         if(grab){
+                            SfxManager.instance.PlaySFX(hitSound,SfxManager.instance.transform,hitVol);
                             players.player1.Action(grabAction);
                             players.player2.fighterActionState = FighterActionState.Grabbed;
                         }
@@ -56,6 +57,7 @@ public class Box : MonoBehaviour
                     }
                     else{
                         if(grab){
+                            SfxManager.instance.PlaySFX(hitSound,SfxManager.instance.transform,hitVol);
                             players.player2.Action(grabAction);
                             players.player1.fighterActionState = FighterActionState.Grabbed;
                         }

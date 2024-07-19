@@ -72,6 +72,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -2598976021339741970, guid: e2e0787ada82df447aeaf02dbe92a547, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -6338852072515582640, guid: e2e0787ada82df447aeaf02dbe92a547, type: 2}
+    value: {fileID: 7005553166437219935}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &2534515599800763248
@@ -105,6 +107,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 51af25be8a05eb549a87c5c70f739464, type: 2}
     - {fileID: 11400000, guid: 729d724028ec24c4db7938e1e55e256b, type: 2}
+    - {fileID: 11400000, guid: 39a402b88db60634a866be0e61f378e0, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -126,6 +129,20 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: SignalFunctions, Assembly-CSharp
           m_MethodName: GrabRelease
           m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1653082001987007728}
+          m_TargetAssemblyTypeName: SignalFunctions, Assembly-CSharp
+          m_MethodName: PlaySound
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
