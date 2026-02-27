@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07924773, g: 0.07924773, b: 0.07924773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1577,7 +1576,7 @@ MonoBehaviour:
   wallDist: 100
   minWallBounceVel: 0.5
   playersSpawned: 0
-  trainingMode: 1
+  trainingMode: 0
   stage: {fileID: 11400000, guid: 7f024dc07db81834cbe9288570474695, type: 2}
 --- !u!4 &1036419381
 Transform:
@@ -1825,7 +1824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ba799696c2e42a44588d8d897870c5ed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2442,6 +2441,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462954313}
   m_CullTransparentMesh: 1
+--- !u!95 &1484870070 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ba799696c2e42a44588d8d897870c5ed, type: 3}
+  m_PrefabInstance: {fileID: 1124541589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1536585873
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,6 +3242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2131236x
       objectReference: {fileID: 0}
+    - target: {fileID: 2851543893088266803, guid: 2b6739c737af5fd48ab028c19c4fec0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3581818721661211469, guid: 2b6739c737af5fd48ab028c19c4fec0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3294,6 +3302,10 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[20].key
       value: 
       objectReference: {fileID: 9113205310229922709, guid: e3f47c95509cd6b419ccfe8eb60b8946, type: 2}
+    - target: {fileID: 7445215107576623021, guid: 2b6739c737af5fd48ab028c19c4fec0c, type: 3}
+      propertyPath: m_SceneBindings.Array.data[0].value
+      value: 
+      objectReference: {fileID: 1484870070}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
